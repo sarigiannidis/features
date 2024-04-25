@@ -1,5 +1,5 @@
 
-# My Favorite Color (color)
+# My Favorite Color (shot)
 
 A feature to remind you of your favorite color
 
@@ -7,7 +7,7 @@ A feature to remind you of your favorite color
 
 ```json
 "features": {
-    "ghcr.io/sarigiannidis/features/color:1": {}
+    "ghcr.io/sarigiannidis/features/shot:1": {}
 }
 ```
 
@@ -21,4 +21,4 @@ A feature to remind you of your favorite color
 
 ---
 
-_Note: This file was auto-generated from the [devcontainer-feature.json](devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
+_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/sarigiannidis/features/blob/main/src/shot/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
