@@ -1,0 +1,6 @@
+{
+    "name": "jekyll on alpine",
+    "id": "alpine-jekyll",
+    "version": "1.0.0",
+    "description": "Install jekyll on alpine"
+}

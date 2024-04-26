@@ -1,0 +1,6 @@
+{
+    "name": "node on alpine",
+    "id": "alpine-node",
+    "version": "1.0.0",
+    "description": "Install node on alpine"
+}

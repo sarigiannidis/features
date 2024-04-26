@@ -1,0 +1,10 @@
+{
+    "node": {
+        "image": "alpine:latest",
+        "features": {
+            "alpine-node": {
+                "version": "v20.12.1"
+            }
+        }
+    }
+}

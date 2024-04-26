@@ -1,0 +1,10 @@
+{
+    "jekyll": {
+        "image": "alpine:latest",
+        "features": {
+            "alpine-jekyll": {
+                "version": "4.3.3"
+            }
+        }
+    }
+}

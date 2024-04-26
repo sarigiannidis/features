@@ -1,0 +1,10 @@
+{
+    "git": {
+        "image": "alpine:latest",
+        "features": {
+            "alpine-git": {
+                "version": "2.43.0"
+            }
+        }
+    }
+}
