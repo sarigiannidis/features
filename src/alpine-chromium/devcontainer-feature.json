@@ -1,0 +1,6 @@
+{
+    "name": "chromium on alpine",
+    "id": "alpine-chromium",
+    "version": "1.0.0",
+    "description": "Install chromium on alpine"
+}
