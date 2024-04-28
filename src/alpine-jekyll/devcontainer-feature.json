@@ -2,5 +2,8 @@
     "name": "jekyll on alpine",
     "id": "alpine-jekyll",
     "version": "1.0.0",
-    "description": "Install jekyll on alpine"
+    "description": "Install jekyll on alpine",
+    "dependsOn": {
+        "ghcr.io/sarigiannidis/features/alpine-ruby:latest": {}
+    }
 }

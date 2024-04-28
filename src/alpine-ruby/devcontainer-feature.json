@@ -1,0 +1,6 @@
+{
+    "name": "ruby on alpine",
+    "id": "alpine-ruby",
+    "version": "1.0.0",
+    "description": "Install ruby on alpine"
+}
