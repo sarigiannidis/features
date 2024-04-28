@@ -1,6 +1,6 @@
 # features
 
-[![Release dev container features & Generate Documentation](https://github.com/sarigiannidis/features/actions/workflows/release.yaml/badge.svg)](https://github.com/sarigiannidis/features/actions/workflows/release.yaml)
+[![Release](https://github.com/sarigiannidis/features/actions/workflows/release.yaml/badge.svg)](https://github.com/sarigiannidis/features/actions/workflows/release.yaml)
 
 devcontainer features
 
