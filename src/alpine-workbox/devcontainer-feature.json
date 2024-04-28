@@ -1,0 +1,9 @@
+{
+    "name": "workbox on alpine",
+    "id": "alpine-workbox",
+    "version": "1.0.0",
+    "description": "Install workbox on alpine",
+    "dependsOn": {
+        "ghcr.io/sarigiannidis/features/alpine-node:latest": {}
+    }
+}
