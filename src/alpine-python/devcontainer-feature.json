@@ -1,6 +1,6 @@
 {
     "name": "python on alpine",
     "id": "alpine-python",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Install python on alpine"
 }
