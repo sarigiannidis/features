@@ -1,6 +1,6 @@
 {
     "name": "python on alpine",
-    "id": "python-workbox",
+    "id": "alpine-python",
     "version": "1.0.0",
     "description": "Install python on alpine"
 }
