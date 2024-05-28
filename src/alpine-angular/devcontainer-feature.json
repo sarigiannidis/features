@@ -1,0 +1,9 @@
+{
+    "name": "angular on alpine",
+    "id": "alpine-angular",
+    "version": "1.0.0",
+    "description": "Install angular on alpine",
+    "dependsOn": {
+        "ghcr.io/sarigiannidis/features/alpine-node:latest": {}
+    }
+}
