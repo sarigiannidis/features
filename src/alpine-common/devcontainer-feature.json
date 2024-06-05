@@ -1,0 +1,6 @@
+{
+    "name": "sh on alpine",
+    "id": "alpine-common",
+    "version": "1.0.0",
+    "description": "Common configuration for alpine devcontainer"
+}
