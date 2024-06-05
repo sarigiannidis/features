@@ -1,0 +1,6 @@
+{
+    "name": "dotnet on alpine",
+    "id": "alpine-dotnet",
+    "version": "1.0.0",
+    "description": "Install dotnet on alpine"
+}
