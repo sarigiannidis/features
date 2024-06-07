@@ -16,27 +16,29 @@ else
     CU_INSTALLED=0
 fi
 
-# Create the /root/.vscode-server/data/Machine/ directory if it does not exist
-mkdir -p /root/.vscode-server/data/Machine/
+MACHINE_PATH="/root/.vscode-server/data/Machine"
+SETTINGS_FILE="${MACHINE_PATH}/settings.json"
 
-# Create the /root/.vscode-server/data/Machine/settings.json if it does not exist
-touch /root/.vscode-server/data/Machine/settings.json
+# Create the /root/.vscode-server/data/Machine/ directory if it does not exist
+mkdir -p $MACHINE_PATH
+
+# Create the $SETTINGS_FILE if it does not exist
+touch $MACHINE_PATH/settings.json
 
 # Set the "terminal.integrated.defaultProfile.linux" setting to "sh" in the settings.json
 tmp=$(mktemp)
-jq '. + {"terminal.integrated.defaultProfile.linux": "sh"}' /root/.vscode-server/data/Machine/settings.json > "$tmp"
-mv "$tmp" /root/.vscode-server/data/Machine/settings.json
+jq '."terminal.integrated.defaultProfile.linux" = "sh"' $SETTINGS_FILE > "$tmp"
+mv "$tmp" $SETTINGS_FILE
 
 # Set the "terminal.integrated.profiles.linux"/"sh"/"path" property to "/bin/sh" in the settings.json
 tmp=$(mktemp)
-jq '. + {"terminal.integrated.profiles.linux": {"sh": {"path": "/bin/sh"}}}' /root/.vscode-server/data/Machine/settings.json > "$tmp"
-mv "$tmp" /root/.vscode-server/data/Machine/settings.json
+jq '."terminal.integrated.profiles.linux".sh.path = "/bin/sh"' $SETTINGS_FILE > "$tmp"
+mv "$tmp" $SETTINGS_FILE
 
-# Set the "terminal.integrated.profiles.linux"/"sh"/"args" property to ["-l"] in the settings.json
+# "terminal.integrated.profiles.linux"/"sh"/"args" is an array property. Append "-l" to the array in the without removing other values from the array
 tmp=$(mktemp)
-jq '. + {"terminal.integrated.profiles.linux": {"sh": {"args": ["-l"]}}}' /root/.vscode-server/data/Machine/settings.json > "$tmp"
-mv "$tmp" /root/.vscode-server/data/Machine/settings.json
-
+jq '."terminal.integrated.profiles.linux".sh.args |= . + ["-l"]' $SETTINGS_FILE > "$tmp"
+mv "$tmp" $SETTINGS_FILE
 
 # Clean up
 if [ "$JQ_INSTALLED" -eq 1 ]; then
