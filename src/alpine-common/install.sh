@@ -11,14 +11,14 @@ set -e
 
 # Install jq and coreutils if they are not already installed
 if ! apk list --installed | grep -q jq; then
-    apk add --no-cache jq
+    apk add --no-cache --quiet jq
     JQ_INSTALLED=1
 else
     JQ_INSTALLED=0
 fi
 
 if ! apk list --installed | grep -q coreutils; then
-    apk add --no-cache coreutils
+    apk add --no-cache --quiet coreutils
     CU_INSTALLED=1
 else
     CU_INSTALLED=0
@@ -30,8 +30,10 @@ SETTINGS_FILE="\${MACHINE_PATH}/settings.json"
 # Create the /root/.vscode-server/data/Machine/ directory if it does not exist
 mkdir -p \$MACHINE_PATH
 
-# Create the \$SETTINGS_FILE if it does not exist
-touch \$MACHINE_PATH/settings.json
+# if the \$SETTINGS_FILE does not exist, create it and add the following content:"{}"
+if [ ! -f \$SETTINGS_FILE ]; then
+    echo "{}" > \$SETTINGS_FILE
+fi
 
 # Set the "terminal.integrated.defaultProfile.linux" setting to "sh" in the settings.json
 tmp=\$(mktemp)
@@ -50,11 +52,11 @@ mv "\$tmp" \$SETTINGS_FILE
 
 # Clean up
 if [ "\$JQ_INSTALLED" -eq 1 ]; then
-    apk del jq
+    apk del --quiet jq
 fi
 
 if [ "\$CU_INSTALLED" -eq 1 ]; then
-    apk del coreutils
+    apk del --quiet coreutils
 fi
 
 EOF
