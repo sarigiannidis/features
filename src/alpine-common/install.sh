@@ -31,7 +31,7 @@ SETTINGS_FILE="\${MACHINE_PATH}/settings.json"
 mkdir -p \$MACHINE_PATH
 
 # if the \$SETTINGS_FILE does not exist, create it and add the following content:"{}"
-if [ ! -f \$SETTINGS_FILE ]; then
+if [ ! -f \$SETTINGS_FILE ] || [ ! -s \$SETTINGS_FILE ]; then
     echo "{}" > \$SETTINGS_FILE
 fi
 
