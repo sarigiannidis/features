@@ -1,5 +1,5 @@
 
-# sh on alpine (alpine-common)
+# common on alpine (alpine-common)
 
 Common configuration for alpine devcontainer
 
