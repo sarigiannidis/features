@@ -30,6 +30,7 @@
         }
     },
     "features": {
+        "ghcr.io/sarigiannidis/features/alpine-bash:latest": {},
         "ghcr.io/sarigiannidis/features/alpine-git:latest": {},
         "ghcr.io/sarigiannidis/features/alpine-node:latest": {}
     }
