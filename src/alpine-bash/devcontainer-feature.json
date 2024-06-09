@@ -1,0 +1,7 @@
+{
+    "name": "bash on alpine",
+    "id": "alpine-bash",
+    "version": "1.0.0",
+    "description": "bash on alpine",
+    "postCreateCommand": "/usr/local/share/update-vscode-server-settings.sh"
+}
