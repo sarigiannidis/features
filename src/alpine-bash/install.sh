@@ -1,6 +1,9 @@
 #!/bin/sh
 set -e
 
+# Install bash
+apk add --no-cache --upgrade bash
+
 # --- Generate an 'update-vscode-server-settings.sh' script to be executed by the 'postCreateCommand' lifecycle hook
 UPDATE_VSCODE_SERVER_SETTINGS_SCRIPT_PATH="/usr/local/share/update-vscode-server-settings.sh"
 
@@ -35,14 +38,14 @@ if [ ! -f \$SETTINGS_FILE ] || [ ! -s \$SETTINGS_FILE ]; then
     echo "{}" > \$SETTINGS_FILE
 fi
 
-# Set the "terminal.integrated.defaultProfile.linux" setting to "sh" in the settings.json
+# Set the "terminal.integrated.defaultProfile.linux" setting to "bash" in the settings.json
 tmp=\$(mktemp)
-jq '."terminal.integrated.defaultProfile.linux" = "sh"' \$SETTINGS_FILE > "\$tmp"
+jq '."terminal.integrated.defaultProfile.linux" = "bash"' \$SETTINGS_FILE > "\$tmp"
 mv "\$tmp" \$SETTINGS_FILE
 
-# Set the "terminal.integrated.profiles.linux"/"sh"/"path" property to "/bin/sh" in the settings.json
+# Set the "terminal.integrated.profiles.linux"/"sh"/"path" property to "/bin/bash" in the settings.json
 tmp=\$(mktemp)
-jq '."terminal.integrated.profiles.linux".sh.path = "/bin/sh"' \$SETTINGS_FILE > "\$tmp"
+jq '."terminal.integrated.profiles.linux".sh.path = "/bin/bash"' \$SETTINGS_FILE > "\$tmp"
 mv "\$tmp" \$SETTINGS_FILE
 
 # "terminal.integrated.profiles.linux"/"sh"/"args" is an array property. Append "-l" to the array in the without removing other values from the array
