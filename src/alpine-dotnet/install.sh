@@ -20,7 +20,7 @@ chmod +x dotnet-install.sh
 
 # Install 
 
-`./dotnet-install.sh --channel 9.0.1xx --quality preview`
+. ./dotnet-install.sh --channel 9.0.1xx --quality preview
 
 # echo 'export DOTNET_ROOT=$HOME/.dotnet' >> ~/.bashrc
 # echo 'export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools' >> ~/.bashrc
