@@ -56,6 +56,10 @@
             "description": "Version of the .NET SDK to install."
         }
     },
+    "containerEnv": {
+        "DOTNET_ROOT": "${HOME}/.dotnet",
+        "PATH": "${PATH}:${DOTNET_ROOT}:${DOTNET_ROOT}/tools"
+    },
     "dependsOn": {
         "ghcr.io/sarigiannidis/features/alpine-bash:latest": {}
     }
