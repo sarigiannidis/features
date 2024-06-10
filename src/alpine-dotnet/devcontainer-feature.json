@@ -1,0 +1,66 @@
+{
+    "name": "dotnet on alpine",
+    "id": "alpine-dotnet",
+    "version": "1.0.0",
+    "description": "Install dotnet on alpine",
+    "options": {
+        "architecture": {
+            "type": "string",
+            "proposals": [
+                "<auto>",
+                "amd64",
+                "x64",
+                "x86",
+                "arm64",
+                "arm",
+                "s390x",
+                "ppc64le"
+            ],
+            "default": "<auto>",
+            "description": "Architecture of the .NET binaries to install."
+        },
+        "channel": {
+            "type": "string",
+            "proposals": [
+                "STS",
+                "LTS",
+                "8.0.2xx"
+            ],
+            "default": "LTS",
+            "description": "Specifies the source channel for the installation."
+        },
+        "quality": {
+            "type": "string",
+            "proposals": [
+                "daily",
+                "signed",
+                "validated",
+                "preview",
+                "GA"
+            ],
+            "default": "GA",
+            "description": "Specifies the quality of the .NET SDK to install."
+        },
+        "runtime": {
+            "type": "string",
+            "proposals": [
+                "dotnet",
+                "aspnetcore"
+            ],
+            "default": "dotnet",
+            "description": "Installs just the shared runtime, not the entire SDK."
+        },
+        "version": {
+            "type": "string",
+            "default": "latest",
+            "description": "Version of the .NET SDK to install."
+        }
+    },
+    "containerEnv": {
+        "DOTNET_ROOT": "${HOME}/.dotnet",
+        "PATH": "${PATH}:${DOTNET_ROOT}:${DOTNET_ROOT}/tools"
+    },
+    "dependsOn": {
+        "ghcr.io/sarigiannidis/features/alpine-bash:latest": {}
+    }
+}
