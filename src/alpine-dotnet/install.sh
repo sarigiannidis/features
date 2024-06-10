@@ -10,7 +10,7 @@ O_RUNTIME="${RUNTIME:-"dotnet"}"
 O_VERSION=$VERSION
 
 # Download the install script
-curl -s -O https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh
+wget -q https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh
 
 # Make the script executable
 chmod +x dotnet-install.sh
