@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -ex
+
 # Read the options
 O_ARCHITECTURE="${ARCHITECTURE:-"<auto>"}"
 O_CHANNEL="${CHANNEL:-"<LTS>"}"
