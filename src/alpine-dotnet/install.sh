@@ -16,11 +16,7 @@ wget -q https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.s
 chmod +x dotnet-install.sh
 
 # TODO
+# 1. Use the options to install the .NET SDK
 # 2. GPG: https://learn.microsoft.com/en-gb/dotnet/core/tools/dotnet-install-script?WT.mc_id=dotnet-35129-website#preparing-environment
 
-# Install 
-
-. ./dotnet-install.sh --channel 9.0.1xx --quality preview
-
-# echo 'export DOTNET_ROOT=$HOME/.dotnet' >> ~/.bashrc
-# echo 'export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools' >> ~/.bashrc
+. ./dotnet-install.sh --channel 9.0.1xx --quality preview --install-dir /usr/local/share/dotnet
