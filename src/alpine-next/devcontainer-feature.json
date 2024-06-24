@@ -1,0 +1,9 @@
+{
+    "name": "next on alpine",
+    "id": "alpine-next",
+    "version": "1.0.0",
+    "description": "Install next on alpine",
+    "dependsOn": {
+        "ghcr.io/sarigiannidis/features/alpine-node:latest": {}
+    }
+}
