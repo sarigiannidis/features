@@ -1,0 +1,9 @@
+{
+    "name": "pip on alpine",
+    "id": "alpine-pip",
+    "version": "1.0.0",
+    "description": "Install pip on alpine",
+    "dependsOn": {
+        "ghcr.io/sarigiannidis/features/alpine-python:latest": {}
+    }
+}
