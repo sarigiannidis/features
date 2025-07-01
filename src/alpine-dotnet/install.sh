@@ -16,9 +16,26 @@ echo "Quality: $O_QUALITY"
 echo "Runtime: $O_RUNTIME"
 echo "Version: $O_VERSION"
 
+# Create temporary directory for downloads
+TEMP_DIR=$(mktemp -d)
+cd "$TEMP_DIR"
+
 # Download the install script
 echo "Downloading dotnet-install.sh..."
 wget -q https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh
+
+# Verify the script is reasonable size (basic sanity check)
+SCRIPT_SIZE=$(wc -c < dotnet-install.sh)
+if [ "$SCRIPT_SIZE" -lt 1000 ] || [ "$SCRIPT_SIZE" -gt 100000 ]; then
+    echo "ERROR: Downloaded script size ($SCRIPT_SIZE bytes) is suspicious"
+    exit 1
+fi
+
+# Basic content verification - check for expected patterns
+if ! grep -q "Microsoft Corporation" dotnet-install.sh; then
+    echo "ERROR: Downloaded script doesn't appear to be from Microsoft"
+    exit 1
+fi
 
 # Make the script executable
 chmod +x dotnet-install.sh
@@ -52,6 +69,7 @@ echo "Installing .NET with args: $INSTALL_ARGS"
 . ./dotnet-install.sh $INSTALL_ARGS
 
 # Clean up
-rm -f dotnet-install.sh
+cd /
+rm -rf "$TEMP_DIR"
 
 echo "Done!"
