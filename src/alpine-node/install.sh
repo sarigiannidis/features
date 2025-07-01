@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-echo "Activating feature 'alpine-jekyll'"
+echo "Activating feature 'alpine-node'"
 
 echo "Updating repository indexes"
 apk update

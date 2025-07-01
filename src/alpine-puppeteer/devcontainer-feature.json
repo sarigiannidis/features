@@ -7,5 +7,4 @@
         "ghcr.io/sarigiannidis/features/alpine-chromium:latest": {},
         "ghcr.io/sarigiannidis/features/alpine-node:latest": {}
     }
-
 }

@@ -4,7 +4,7 @@ set -e
 
 source dev-container-features-test-lib
 
-check "git --version" | grep -E 'git version [0-9]+\.[0-9]+\.[0-9]+'
+check "bash --version" | grep 'bash'
 
 # Report result
 # If any of the checks above exited with a non-zero exit code, the test will fail.

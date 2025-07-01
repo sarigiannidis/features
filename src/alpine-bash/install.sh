@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+echo "Activating feature 'alpine-bash'"
+
 # Install bash
 apk add --no-cache --upgrade bash
 
