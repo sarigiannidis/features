@@ -47,7 +47,7 @@ test_feature() {
     
     if command -v devcontainer >/dev/null 2>&1; then
         # Use devcontainer CLI if available
-        if devcontainer features test --features "$FEATURES_DIR" --test-folder . --log-level info; then
+        if devcontainer features test --project-folder "$REPO_ROOT" --features "$feature_name" --base-image alpine:latest --log-level info; then
             print_status $GREEN "✓ Test passed for $feature_name"
             return 0
         else
