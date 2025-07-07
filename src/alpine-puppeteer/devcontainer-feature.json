@@ -1,10 +1,10 @@
 {
-    "name": "puppeteer on alpine",
-    "id": "alpine-puppeteer",
-    "version": "1.0.0",
-    "description": "Installs Puppeteer Node.js library for controlling headless Chrome on Alpine Linux",
-    "dependsOn": {
-        "ghcr.io/sarigiannidis/features/alpine-chromium:latest": {},
-        "ghcr.io/sarigiannidis/features/alpine-node:latest": {}
-    }
+  "name": "puppeteer on alpine",
+  "id": "alpine-puppeteer",
+  "version": "1.0.1",
+  "description": "Installs Puppeteer Node.js library for controlling headless Chrome on Alpine Linux",
+  "dependsOn": {
+    "ghcr.io/sarigiannidis/features/alpine-chromium:latest": {},
+    "ghcr.io/sarigiannidis/features/alpine-node:latest": {}
+  }
 }

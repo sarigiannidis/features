@@ -1,6 +1,6 @@
 {
-    "name": "git on alpine",
-    "id": "alpine-git",
-    "version": "1.0.0",
-    "description": "Installs Git version control system on Alpine Linux"
+  "name": "git on alpine",
+  "id": "alpine-git",
+  "version": "1.0.1",
+  "description": "Installs Git version control system on Alpine Linux"
 }

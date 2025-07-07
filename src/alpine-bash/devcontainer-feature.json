@@ -1,7 +1,7 @@
 {
-    "name": "bash on alpine",
-    "id": "alpine-bash",
-    "version": "1.0.0",
-    "description": "Installs Bash shell as an alternative to Alpine's default ash shell on Alpine Linux",
-    "postCreateCommand": "/usr/local/share/update-vscode-server-settings.sh"
+  "name": "bash on alpine",
+  "id": "alpine-bash",
+  "version": "1.0.1",
+  "description": "Installs Bash shell as an alternative to Alpine's default ash shell on Alpine Linux",
+  "postCreateCommand": "/usr/local/share/update-vscode-server-settings.sh"
 }

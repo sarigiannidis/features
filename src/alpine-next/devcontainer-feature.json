@@ -1,9 +1,9 @@
 {
-    "name": "next on alpine",
-    "id": "alpine-next",
-    "version": "1.0.0",
-    "description": "Installs Next.js React framework for production-ready web applications on Alpine Linux",
-    "dependsOn": {
-        "ghcr.io/sarigiannidis/features/alpine-node:latest": {}
-    }
+  "name": "next on alpine",
+  "id": "alpine-next",
+  "version": "1.0.1",
+  "description": "Installs Next.js React framework for production-ready web applications on Alpine Linux",
+  "dependsOn": {
+    "ghcr.io/sarigiannidis/features/alpine-node:latest": {}
+  }
 }

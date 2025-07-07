@@ -1,9 +1,9 @@
 {
-    "name": "workbox on alpine",
-    "id": "alpine-workbox",
-    "version": "1.0.0",
-    "description": "Installs Workbox libraries for adding progressive web app features on Alpine Linux",
-    "dependsOn": {
-        "ghcr.io/sarigiannidis/features/alpine-node:latest": {}
-    }
+  "name": "workbox on alpine",
+  "id": "alpine-workbox",
+  "version": "1.0.1",
+  "description": "Installs Workbox libraries for adding progressive web app features on Alpine Linux",
+  "dependsOn": {
+    "ghcr.io/sarigiannidis/features/alpine-node:latest": {}
+  }
 }
