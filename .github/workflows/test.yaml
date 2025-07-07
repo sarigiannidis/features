@@ -1,0 +1,93 @@
+name: "Test Features"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    continue-on-error: false
+    strategy:
+      matrix:
+        features:
+          - alpine-angular
+          - alpine-bash
+          - alpine-chromium
+          - alpine-dotnet
+          - alpine-git
+          - alpine-gulp
+          - alpine-jekyll
+          - alpine-next
+          - alpine-node
+          - alpine-pip
+          - alpine-puppeteer
+          - alpine-python
+          - alpine-ruby
+          - alpine-workbox
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Install DevContainer CLI
+        run: npm install -g @devcontainers/cli
+
+      - name: Test feature '${{ matrix.features }}'
+        id: test
+        run: |
+          echo "Testing feature: ${{ matrix.features }}"
+          if [ -f "./test/${{ matrix.features }}/test.sh" ]; then
+            cd "./test/${{ matrix.features }}"
+            devcontainer features test \
+              --features ../../src \
+              --test-folder . \
+              --log-level debug
+          else
+            echo "No test script found for ${{ matrix.features }}"
+            exit 1
+          fi
+
+  validate-features:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Install DevContainer CLI
+        run: npm install -g @devcontainers/cli
+        
+      - name: Validate all features
+        run: |
+          for feature in src/*/; do
+            echo "Validating feature: $(basename "$feature")"
+            devcontainer features validate "$feature"
+          done
+
+  test-scenarios:
+    runs-on: ubuntu-latest
+    needs: [test, validate-features]
+    strategy:
+      matrix:
+        scenario:
+          - alpine-git
+          - alpine-jekyll
+          - alpine-node
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Test scenario '${{ matrix.scenario }}'
+        uses: devcontainers/ci@v0.3
+        with:
+          imageName: ghcr.io/devcontainers/ci/test-scenario:latest
+          runCmd: |
+            echo "Testing scenario: ${{ matrix.scenario }}"
+            # Test with scenario configuration
+            devcontainer features test \
+              --features ./src \
+              --test-scenarios ./test/${{ matrix.scenario }}/scenarios.json \
+              --log-level debug
