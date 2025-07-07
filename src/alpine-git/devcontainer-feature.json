@@ -2,5 +2,5 @@
     "name": "git on alpine",
     "id": "alpine-git",
     "version": "1.0.0",
-    "description": "Install git on alpine"
+    "description": "Installs Git version control system on Alpine Linux"
 }

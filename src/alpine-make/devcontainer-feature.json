@@ -2,7 +2,7 @@
     "name": "GNU Make on Alpine",
     "id": "alpine-make",
     "version": "1.0.0",
-    "description": "Install GNU Make build automation tool on Alpine Linux",
+    "description": "Installs GNU Make build automation tool on Alpine Linux",
     "installsAfter": [
         "ghcr.io/sarigiannidis/features/alpine-bash"
     ]
