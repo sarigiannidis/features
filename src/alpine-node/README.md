@@ -1,7 +1,7 @@
 
 # node on alpine (alpine-node)
 
-Install node on alpine
+Installs Node.js JavaScript runtime and npm package manager on Alpine Linux
 
 ## Example Usage
 

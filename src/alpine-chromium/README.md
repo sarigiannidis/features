@@ -1,7 +1,7 @@
 
 # chromium on alpine (alpine-chromium)
 
-Install chromium on alpine
+Installs Chromium web browser for testing and automation on Alpine Linux
 
 ## Example Usage
 

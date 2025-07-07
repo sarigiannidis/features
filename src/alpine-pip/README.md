@@ -1,7 +1,7 @@
 
 # pip on alpine (alpine-pip)
 
-Install pip on alpine
+Installs pip Python package installer on Alpine Linux
 
 ## Example Usage
 
