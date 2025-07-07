@@ -186,15 +186,17 @@ jobs:
             
             # Create a basic installation test
             mkdir -p ./test/${{ matrix.features }}
-            echo '#!/bin/sh' > ./test/${{ matrix.features }}/test.sh
-            echo 'set -e' >> ./test/${{ matrix.features }}/test.sh
-            echo '' >> ./test/${{ matrix.features }}/test.sh
-            echo '. dev-container-features-test-lib' >> ./test/${{ matrix.features }}/test.sh
-            echo '' >> ./test/${{ matrix.features }}/test.sh
-            echo '# Basic installation test - just check that feature installed without error' >> ./test/${{ matrix.features }}/test.sh
-            echo 'check "feature installation completed" echo "Feature installed successfully"' >> ./test/${{ matrix.features }}/test.sh
-            echo '' >> ./test/${{ matrix.features }}/test.sh
-            echo 'reportResults' >> ./test/${{ matrix.features }}/test.sh
+            cat > ./test/${{ matrix.features }}/test.sh << 'EOFTEST'
+#!/bin/sh
+set -e
+
+. dev-container-features-test-lib
+
+# Basic installation test - just check that feature installed without error
+check "feature installation completed" echo "Feature installed successfully"
+
+reportResults
+EOFTEST
             chmod +x ./test/${{ matrix.features }}/test.sh
             
             if devcontainer features test \
