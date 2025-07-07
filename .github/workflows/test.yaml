@@ -21,6 +21,8 @@ jobs:
           - alpine-git
           - alpine-gulp
           - alpine-jekyll
+          - alpine-jq
+          - alpine-make
           - alpine-next
           - alpine-node
           - alpine-pip
@@ -75,6 +77,8 @@ jobs:
         scenario:
           - alpine-git
           - alpine-jekyll
+          - alpine-jq
+          - alpine-make
           - alpine-node
     steps:
       - name: Checkout
