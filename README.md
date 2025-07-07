@@ -105,6 +105,42 @@ make create-feature NAME=   # Create new feature
 make generate-docs          # Generate documentation
 make list-features          # List all features
 make clean                  # Clean up
+
+# Version Management
+make version-list           # List all features and versions
+make version-check          # Check version consistency
+make version-fix            # Fix version issues automatically
+make version-patch          # Bump patch version for all features
+make version-minor          # Bump minor version for all features  
+make version-major          # Bump major version for all features
+make version-report         # Generate version report
+```
+
+### Version Management
+
+This repository follows [Semantic Versioning](https://semver.org/) principles. See [VERSIONING.md](VERSIONING.md) for the complete versioning policy.
+
+#### Automated Versioning
+
+Versions are automatically managed through GitHub Actions based on:
+
+- **Pull Request Labels**: `breaking-change`, `enhancement`, `bug`, etc.
+- **Commit Messages**: Using conventional commit format (`feat:`, `fix:`, etc.)
+
+#### Manual Versioning
+
+```bash
+# Check current versions
+make version-list
+
+# Bump patch version for all features
+make version-patch
+
+# Bump minor version for specific feature
+make version-minor FEATURE=alpine-node
+
+# Check version consistency
+make version-check
 ```
 
 ## Contributing
