@@ -276,9 +276,7 @@ jobs:
           ---
           *This PR can be safely merged to apply the version updates.*" \
             --base main \
-            --head "$BRANCH_NAME" \
-            --label "automated" \
-            --label "version-bump"
+            --head "$BRANCH_NAME"
           
           # Push tags after PR is created (tags can be pushed without branch restrictions)
           git push origin --tags
