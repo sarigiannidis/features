@@ -2,19 +2,7 @@
 
 set -e
 
-# Simple test functions
-check() {
-    desc="$1"
-    shift
-    echo "Testing: $desc"
-    if "$@"; then
-        echo "✓ $desc"
-        return 0
-    else
-        echo "✗ $desc"
-        return 1
-    fi
-}
+. dev-container-features-test-lib
 
 # Test jq installation and version
 check "jq is installed" which jq
@@ -53,7 +41,7 @@ check "jq filter and map" sh -c 'jq -r ".dependencies | to_entries[] | select(.k
 echo "Creating test array JSON..."
 echo '[{"id":1,"name":"alice"},{"id":2,"name":"bob"}]' > /tmp/array.json
 check "jq map array" sh -c 'jq ".[].name" /tmp/array.json | grep -E "(alice|bob)"'
-check "jq filter array" sh -c 'jq ".[] | select(.id = 1) | .name" /tmp/array.json | grep "alice"'
+check "jq filter array" sh -c 'jq ".[] | select(.id == 1) | .name" /tmp/array.json | grep "alice"'
 
 # Test jq with null and empty handling
 check "jq handle null values" sh -c 'echo "{\"a\": null, \"b\": \"value\"}" | jq -r ".a // \"default\"" | grep "default"'
@@ -65,4 +53,5 @@ check "jq from stdin" sh -c 'echo "{\"hello\": \"world\"}" | jq -r ".hello" | gr
 # Test jq error handling (should exit with non-zero for invalid JSON)
 check "jq handles invalid JSON gracefully" sh -c '! echo "invalid json" | jq "." 2>/dev/null'
 
-echo "All tests completed successfully!"
+# Report results
+reportResults
