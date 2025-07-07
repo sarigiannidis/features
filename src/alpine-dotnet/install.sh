@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# NOTE: This script MUST use bash, not sh!
+# The Microsoft dotnet-install.sh script that we download requires bash.
+# Do not change the shebang to #!/bin/sh as it will break the installation.
+
 set -ex
 
 # Read the options
