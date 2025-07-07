@@ -1,7 +1,7 @@
 
 # jekyll on alpine (alpine-jekyll)
 
-Install jekyll on alpine
+Installs Jekyll static site generator on Alpine Linux
 
 ## Example Usage
 
