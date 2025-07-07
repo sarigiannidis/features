@@ -1,0 +1,34 @@
+{
+    "make_with_build_base": {
+        "image": "alpine:latest",
+        "features": {
+            "alpine-make": {
+                "includeBuildBase": true
+            }
+        }
+    },
+    "make_without_build_base": {
+        "image": "alpine:latest", 
+        "features": {
+            "alpine-make": {
+                "includeBuildBase": false
+            }
+        }
+    },
+    "make_with_dependencies": {
+        "image": "alpine:latest",
+        "features": {
+            "alpine-bash": {},
+            "alpine-git": {},
+            "alpine-make": {
+                "includeBuildBase": true
+            }
+        }
+    },
+    "make_minimal": {
+        "image": "alpine:latest",
+        "features": {
+            "alpine-make": {}
+        }
+    }
+}
