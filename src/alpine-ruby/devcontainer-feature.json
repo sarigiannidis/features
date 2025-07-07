@@ -2,7 +2,7 @@
     "name": "ruby on alpine",
     "id": "alpine-ruby",
     "version": "1.0.0",
-    "description": "Install ruby on alpine",
+    "description": "Installs Ruby programming language and runtime on Alpine Linux",
     "dependsOn": {
         "ghcr.io/sarigiannidis/features/alpine-build-base:latest": {}
     }

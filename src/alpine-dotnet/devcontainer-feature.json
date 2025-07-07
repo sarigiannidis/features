@@ -2,7 +2,7 @@
     "name": "dotnet on alpine",
     "id": "alpine-dotnet",
     "version": "1.0.0",
-    "description": "Install .NET SDK and runtime on Alpine Linux (requires bash for Microsoft's official installer)",
+    "description": "Installs .NET SDK and runtime on Alpine Linux (requires bash for Microsoft's official installer)",
     "options": {
         "architecture": {
             "type": "string",

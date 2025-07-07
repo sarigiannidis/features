@@ -2,7 +2,7 @@
     "name": "gulp on alpine",
     "id": "alpine-gulp",
     "version": "1.0.0",
-    "description": "Install gulp on alpine",
+    "description": "Installs Gulp toolkit for automating development workflows on Alpine Linux",
     "dependsOn": {
         "ghcr.io/sarigiannidis/features/alpine-node:latest": {}
     }

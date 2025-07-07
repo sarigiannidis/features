@@ -2,5 +2,5 @@
     "name": "chromium on alpine",
     "id": "alpine-chromium",
     "version": "1.0.0",
-    "description": "Install chromium on alpine"
+    "description": "Installs Chromium web browser for testing and automation on Alpine Linux"
 }
