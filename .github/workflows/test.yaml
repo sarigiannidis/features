@@ -186,7 +186,7 @@ jobs:
             
             # Create a basic installation test
             mkdir -p ./test/${{ matrix.features }}
-            cat > ./test/${{ matrix.features }}/test.sh << 'EOF'
+            cat > ./test/${{ matrix.features }}/test.sh << 'EOFTEST'
 #!/bin/sh
 set -e
 
@@ -196,7 +196,7 @@ set -e
 check "feature installation completed" echo "Feature installed successfully"
 
 reportResults
-EOF
+EOFTEST
             chmod +x ./test/${{ matrix.features }}/test.sh
             
             if devcontainer features test \
