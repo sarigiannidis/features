@@ -44,10 +44,9 @@ jobs:
         run: |
           echo "Testing feature: ${{ matrix.features }}"
           if [ -f "./test/${{ matrix.features }}/test.sh" ]; then
-            cd "./test/${{ matrix.features }}"
             devcontainer features test \
-              --features ../../src \
               --project-folder . \
+              --features ${{ matrix.features }} \
               --log-level debug
           else
             echo "No test script found for ${{ matrix.features }}"
