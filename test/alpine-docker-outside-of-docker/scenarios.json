@@ -1,0 +1,40 @@
+{
+    "alpine-docker-outside-of-docker_default": {
+        "image": "alpine:latest",
+        "features": {
+            "alpine-docker-outside-of-docker": {}
+        }
+    },
+    "alpine-docker-outside-of-docker_latest": {
+        "image": "alpine:latest", 
+        "features": {
+            "alpine-docker-outside-of-docker": {
+                "version": "latest"
+            }
+        }
+    },
+    "alpine-docker-outside-of-docker_no_compose": {
+        "image": "alpine:latest",
+        "features": {
+            "alpine-docker-outside-of-docker": {
+                "dockerDashComposeVersion": "none"
+            }
+        }
+    },
+    "alpine-docker-outside-of-docker_compose_v1": {
+        "image": "alpine:latest",
+        "features": {
+            "alpine-docker-outside-of-docker": {
+                "dockerDashComposeVersion": "v1"
+            }
+        }
+    },
+    "alpine-docker-outside-of-docker_no_buildx": {
+        "image": "alpine:latest",
+        "features": {
+            "alpine-docker-outside-of-docker": {
+                "installDockerBuildx": false
+            }
+        }
+    }
+}

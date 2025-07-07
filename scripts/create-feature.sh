@@ -8,7 +8,7 @@ set -e
 
 set -e
 
-. dev-container-features-test-libPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 FEATURES_DIR="$REPO_ROOT/src"
 TEST_DIR="$REPO_ROOT/test"

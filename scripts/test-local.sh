@@ -43,7 +43,7 @@ test_feature() {
     # Run the test using devcontainer CLI
     print_status $YELLOW "Running test for $feature_name..."
     
-    cd "$TEST_DIR/$feature_name"
+    cd "$REPO_ROOT"
     
     if command -v devcontainer >/dev/null 2>&1; then
         # Use devcontainer CLI if available
