@@ -2,15 +2,28 @@
 
 set -e
 
-source dev-container-features-test-lib
+# Simple test functions
+check() {
+    local desc="$1"
+    shift
+    echo "Testing: $desc"
+    if "$@"; then
+        echo "✓ $desc"
+        return 0
+    else
+        echo "✗ $desc"
+        return 1
+    fi
+}
 
 # Test jq installation and version
 check "jq is installed" which jq
 check "jq version" jq --version
-check "jq version format" jq --version | grep -E 'jq-[0-9]+\.[0-9]+'
+check "jq version format" bash -c 'jq --version | grep -E "jq-[0-9]+\.[0-9]+"'
 
 # Test basic jq functionality with JSON parsing
-check "create test JSON" cat > /tmp/test.json << 'EOF'
+echo "Creating test JSON..."
+cat > /tmp/test.json << 'EOF'
 {
   "name": "test",
   "version": "1.0.0",
@@ -27,30 +40,29 @@ EOF
 
 # Test basic jq operations
 check "jq parse JSON" jq '.' /tmp/test.json
-check "jq extract field" jq -r '.name' /tmp/test.json | grep "test"
-check "jq extract version" jq -r '.version' /tmp/test.json | grep "1.0.0"
+check "jq extract field" bash -c 'jq -r ".name" /tmp/test.json | grep "test"'
+check "jq extract version" bash -c 'jq -r ".version" /tmp/test.json | grep "1.0.0"'
 check "jq extract nested object" jq '.dependencies' /tmp/test.json
-check "jq extract array of keys" jq -r '.dependencies | keys[]' /tmp/test.json | grep -E '(express|lodash)'
+check "jq extract array of keys" bash -c 'jq -r ".dependencies | keys[]" /tmp/test.json | grep -E "(express|lodash)"'
 
 # Test jq with pipes and complex queries
-check "jq count dependencies" test "$(jq '.dependencies | length' /tmp/test.json)" -eq 2
-check "jq filter and map" jq -r '.dependencies | to_entries[] | select(.key | startswith("e")) | .key' /tmp/test.json | grep "express"
+check "jq count dependencies" bash -c 'test "$(jq ".dependencies | length" /tmp/test.json)" -eq 2'
+check "jq filter and map" bash -c 'jq -r ".dependencies | to_entries[] | select(.key | startswith(\"e\")) | .key" /tmp/test.json | grep "express"'
 
 # Test jq with arrays
-check "create test array JSON" echo '[{"id":1,"name":"alice"},{"id":2,"name":"bob"}]' > /tmp/array.json
-check "jq map array" jq '.[].name' /tmp/array.json | grep -E '(alice|bob)'
-check "jq filter array" jq '.[] | select(.id == 1) | .name' /tmp/array.json | grep "alice"
+echo "Creating test array JSON..."
+echo '[{"id":1,"name":"alice"},{"id":2,"name":"bob"}]' > /tmp/array.json
+check "jq map array" bash -c 'jq ".[].name" /tmp/array.json | grep -E "(alice|bob)"'
+check "jq filter array" bash -c 'jq ".[] | select(.id == 1) | .name" /tmp/array.json | grep "alice"'
 
 # Test jq with null and empty handling
-check "jq handle null values" echo '{"a": null, "b": "value"}' | jq -r '.a // "default"' | grep "default"
-check "jq compact output" echo '{"a": 1, "b": 2}' | jq -c '.'
+check "jq handle null values" bash -c 'echo "{\"a\": null, \"b\": \"value\"}" | jq -r ".a // \"default\"" | grep "default"'
+check "jq compact output" bash -c 'echo "{\"a\": 1, \"b\": 2}" | jq -c "."'
 
 # Test jq with stdin
-check "jq from stdin" echo '{"hello": "world"}' | jq -r '.hello' | grep "world"
+check "jq from stdin" bash -c 'echo "{\"hello\": \"world\"}" | jq -r ".hello" | grep "world"'
 
 # Test jq error handling (should exit with non-zero for invalid JSON)
-check "jq handles invalid JSON gracefully" ! echo 'invalid json' | jq '.' 2>/dev/null
+check "jq handles invalid JSON gracefully" bash -c '! echo "invalid json" | jq "." 2>/dev/null'
 
-# Report result
-# If any of the checks above exited with a non-zero exit code, the test will fail.
-reportResults
+echo "All tests completed successfully!"
