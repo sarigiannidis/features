@@ -1,9 +1,9 @@
 {
-    "name": "jekyll on alpine",
-    "id": "alpine-jekyll",
-    "version": "1.0.0",
-    "description": "Installs Jekyll static site generator on Alpine Linux",
-    "dependsOn": {
-        "ghcr.io/sarigiannidis/features/alpine-ruby:latest": {}
-    }
+  "name": "jekyll on alpine",
+  "id": "alpine-jekyll",
+  "version": "1.0.1",
+  "description": "Installs Jekyll static site generator on Alpine Linux",
+  "dependsOn": {
+    "ghcr.io/sarigiannidis/features/alpine-ruby:latest": {}
+  }
 }
