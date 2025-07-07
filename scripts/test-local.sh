@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 
 # Local testing script for DevContainer features
 # Usage: ./scripts/test-local.sh [feature-name]
 
 set -e
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 FEATURES_DIR="$REPO_ROOT/src"
 TEST_DIR="$REPO_ROOT/test"
@@ -18,14 +18,14 @@ NC='\033[0m' # No Color
 
 # Function to print colored output
 print_status() {
-    local color=$1
-    local message=$2
+    color=$1
+    message=$2
     echo -e "${color}${message}${NC}"
 }
 
 # Function to test a single feature
 test_feature() {
-    local feature_name=$1
+    feature_name=$1
     print_status $YELLOW "Testing feature: $feature_name"
     
     # Check if feature exists
@@ -62,8 +62,8 @@ test_feature() {
 
 # Function to validate feature structure
 validate_feature() {
-    local feature_name=$1
-    local feature_dir="$FEATURES_DIR/$feature_name"
+    feature_name=$1
+    feature_dir="$FEATURES_DIR/$feature_name"
     
     print_status $YELLOW "Validating feature structure: $feature_name"
     
@@ -107,8 +107,8 @@ main() {
         exit 1
     fi
     
-    local failed_tests=0
-    local total_tests=0
+    failed_tests=0
+    total_tests=0
     
     if [ $# -eq 0 ]; then
         # Test all features

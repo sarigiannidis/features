@@ -163,7 +163,7 @@ jobs:
             echo "Running basic installation test for ${{ matrix.features }}..."
             # Create a minimal test script
             cat > ./test.sh << 'TESTEOF'
-          #!/bin/bash
+          #!/bin/sh
           set -e
           echo "Testing feature installation..."
           if command -v git >/dev/null 2>&1; then

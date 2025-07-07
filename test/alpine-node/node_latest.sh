@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 
 # Simple test functions
 check() {
-    local desc="$1"
+    desc="$1"
     shift
     echo "Testing: $desc"
     if "$@"; then
@@ -56,7 +56,7 @@ check "npm scripts work" npm run test | grep -q "Test passed"
 check "npm start works" npm start | grep -q "Hello from Node.js"
 
 # Test npm package installation (without actually installing to keep test fast)
-check "npm init works" bash -c "echo 'test-package' | npm init -y > /dev/null"
+check "npm init works" sh -c "echo 'test-package' | npm init -y > /dev/null"
 
 # Cleanup
 cd /tmp

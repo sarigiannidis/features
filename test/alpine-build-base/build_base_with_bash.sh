@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 
 # Simple test functions
 check() {
-    local desc="$1"
+    desc="$1"
     shift
     echo "Testing: $desc"
     if "$@"; then
@@ -28,8 +28,8 @@ check "g++ is installed" command -v g++
 check "make is installed" command -v make
 
 # Test bash-specific functionality
-check "bash can run scripts" bash -c 'echo "Bash is working"'
-check "bash arrays work" bash -c 'arr=(1 2 3); echo ${arr[1]}' | grep -q "2"
+check "bash can run scripts" sh -c 'echo "Bash is working"'
+check "bash arrays work" sh -c 'arr=(1 2 3); echo ${arr[1]}' | grep -q "2"
 
 # Test compilation with bash
 cat > /tmp/test_bash.c << 'EOF'
@@ -40,7 +40,7 @@ int main() {
 }
 EOF
 
-check "bash can run compilation" bash -c "gcc -o /tmp/test_bash /tmp/test_bash.c"
+check "bash can run compilation" sh -c "gcc -o /tmp/test_bash /tmp/test_bash.c"
 check "compiled program works" /tmp/test_bash | grep -q "Hello from C"
 
 # Cleanup

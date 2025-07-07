@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 
 # Simple test functions
 check() {
-    local desc="$1"
+    desc="$1"
     shift
     echo "Testing: $desc"
     if "$@"; then
@@ -98,7 +98,7 @@ check "make debug works" make debug
 check "make test works" make test | grep -q "Hello from C"
 
 # Test make release build
-check "make release works" bash -c "make clean && make release"
+check "make release works" sh -c "make clean && make release"
 
 # Test C++ compilation
 cat > test.cpp << 'EOF'

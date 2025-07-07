@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 
 # Simple test functions
 check() {
-    local desc="$1"
+    desc="$1"
     shift
     echo "Testing: $desc"
     if "$@"; then
@@ -38,7 +38,7 @@ cd /tmp/full-dev-test
 
 # Initialize a git repo
 check "git init works" git init
-check "git config works" bash -c "git config user.name 'Test' && git config user.email 'test@example.com'"
+check "git config works" sh -c "git config user.name 'Test' && git config user.email 'test@example.com'"
 
 # Create a project with config file
 cat > config.json << 'EOF'
