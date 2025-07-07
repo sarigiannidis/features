@@ -1,0 +1,12 @@
+{
+    "name": "Build-base on Alpine",
+    "id": "alpine-build-base",
+    "version": "1.0.0",
+    "description": "Install build-base package with essential build tools (gcc, g++, binutils, libc-dev) on Alpine Linux",
+    "dependsOn": {
+        "ghcr.io/sarigiannidis/features/alpine-make": {}
+    },
+    "installsAfter": [
+        "ghcr.io/sarigiannidis/features/alpine-make"
+    ]
+}
