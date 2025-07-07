@@ -6,5 +6,10 @@ echo "Activating feature 'alpine-ruby'"
 echo "Updating repository indexes"
 apk update
 
-echo "Adding required packages"
-apk add build-base libffi-dev ruby-dev ruby
+echo "Adding Ruby and development packages"
+apk add libffi-dev ruby-dev ruby
+
+echo "Verifying Ruby installation..."
+ruby --version
+
+echo "Feature 'alpine-ruby' installed successfully"

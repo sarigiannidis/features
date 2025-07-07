@@ -2,5 +2,8 @@
     "name": "ruby on alpine",
     "id": "alpine-ruby",
     "version": "1.0.0",
-    "description": "Install ruby on alpine"
+    "description": "Install ruby on alpine",
+    "dependsOn": {
+        "ghcr.io/sarigiannidis/features/alpine-build-base:latest": {}
+    }
 }
