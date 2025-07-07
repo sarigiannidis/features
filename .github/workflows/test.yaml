@@ -47,6 +47,7 @@ jobs:
             devcontainer features test \
               --project-folder . \
               --features ${{ matrix.features }} \
+              --base-image alpine:latest \
               --log-level debug
           else
             echo "No test script found for ${{ matrix.features }}"
@@ -65,8 +66,27 @@ jobs:
       - name: Validate all features
         run: |
           for feature in src/*/; do
-            echo "Validating feature: $(basename "$feature")"
-            devcontainer features validate "$feature"
+            feature_name=$(basename "$feature")
+            echo "Checking feature structure: $feature_name"
+            if [ -f "$feature/devcontainer-feature.json" ]; then
+              echo "✓ Found devcontainer-feature.json for $feature_name"
+              # Check if JSON is valid
+              if jq empty "$feature/devcontainer-feature.json" 2>/dev/null; then
+                echo "✓ Valid JSON for $feature_name"
+              else
+                echo "✗ Invalid JSON for $feature_name"
+                exit 1
+              fi
+            else
+              echo "✗ Missing devcontainer-feature.json for $feature_name"
+              exit 1
+            fi
+            if [ -f "$feature/install.sh" ]; then
+              echo "✓ Found install.sh for $feature_name"
+            else
+              echo "✗ Missing install.sh for $feature_name"
+              exit 1
+            fi
           done
 
   test-scenarios:
@@ -85,15 +105,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install DevContainer CLI
+        run: npm install -g @devcontainers/cli
+
       - name: Test scenario '${{ matrix.scenario }}'
-        uses: devcontainers/ci@v0.3
-        with:
-          imageName: ghcr.io/devcontainers/ci/test-scenario:latest
-          runCmd: |
-            echo "Testing scenario: ${{ matrix.scenario }}"
-            # Test with scenario configuration  
+        run: |
+          echo "Testing scenario: ${{ matrix.scenario }}"
+          if [ -f "./test/${{ matrix.scenario }}/scenarios.json" ]; then
             devcontainer features test \
               --project-folder . \
-              --features ./src/${{ matrix.scenario }} \
-              --filter ${{ matrix.scenario }} \
+              --features ${{ matrix.scenario }} \
+              --base-image alpine:latest \
               --log-level debug
+          else
+            echo "No scenarios.json found for ${{ matrix.scenario }}"
+            exit 1
+          fi
