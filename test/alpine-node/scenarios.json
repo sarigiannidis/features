@@ -1,7 +1,33 @@
 {
-    "node": {
+    "node_latest": {
         "image": "alpine:latest",
         "features": {
+            "alpine-node": {
+                "version": "latest"
+            }
+        }
+    },
+    "node_v20": {
+        "image": "alpine:latest",
+        "features": {
+            "alpine-node": {
+                "version": "v20.12.1"
+            }
+        }
+    },
+    "node_v18": {
+        "image": "alpine:latest",
+        "features": {
+            "alpine-node": {
+                "version": "v18.19.1"
+            }
+        }
+    },
+    "node_with_dependencies": {
+        "image": "alpine:latest",
+        "features": {
+            "alpine-bash": {},
+            "alpine-git": {},
             "alpine-node": {
                 "version": "v20.12.1"
             }
