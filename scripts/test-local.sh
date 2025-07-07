@@ -43,11 +43,11 @@ test_feature() {
     # Run the test using devcontainer CLI
     print_status $YELLOW "Running test for $feature_name..."
     
-    cd "$TEST_DIR/$feature_name"
+    cd "$REPO_ROOT"
     
     if command -v devcontainer >/dev/null 2>&1; then
         # Use devcontainer CLI if available
-        if devcontainer features test --features "$FEATURES_DIR" --test-folder . --log-level info; then
+        if devcontainer features test --project-folder "$REPO_ROOT" --features "$feature_name" --log-level info; then
             print_status $GREEN "✓ Test passed for $feature_name"
             return 0
         else

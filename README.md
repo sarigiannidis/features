@@ -7,22 +7,23 @@ A collection of DevContainer features specifically designed for Alpine Linux con
 
 ## Available Features
 
-| Feature          | Description                                      |
-|------------------|--------------------------------------------------|
-| alpine-angular   | Angular CLI on Alpine Linux                      |
-| alpine-bash      | Bash shell on Alpine Linux                       |
-| alpine-chromium  | Chromium browser on Alpine Linux                 |
-| alpine-dotnet    | .NET SDK on Alpine Linux                         |
-| alpine-git       | Git and GitHub CLI on Alpine Linux               |
-| alpine-gulp      | Gulp task runner on Alpine Linux                 |
-| alpine-jekyll    | Jekyll static site generator on Alpine Linux     |
-| alpine-next      | Next.js on Alpine Linux                          |
-| alpine-node      | Node.js and npm on Alpine Linux                  |
-| alpine-pip       | Python pip package manager on Alpine Linux       |
-| alpine-puppeteer | Puppeteer for browser automation on Alpine Linux |
-| alpine-python    | Python runtime on Alpine Linux                   |
-| alpine-ruby      | Ruby runtime on Alpine Linux                     |
-| alpine-workbox   | Workbox for PWA development on Alpine Linux      |
+| Feature                          | Description                                       |
+|----------------------------------|---------------------------------------------------|
+| alpine-angular                   | Angular CLI on Alpine Linux                      |
+| alpine-bash                      | Bash shell on Alpine Linux                       |
+| alpine-chromium                  | Chromium browser on Alpine Linux                 |
+| alpine-docker-outside-of-docker  | Docker CLI with socket forwarding for Alpine     |
+| alpine-dotnet                    | .NET SDK on Alpine Linux                         |
+| alpine-git                       | Git and GitHub CLI on Alpine Linux               |
+| alpine-gulp                      | Gulp task runner on Alpine Linux                 |
+| alpine-jekyll                    | Jekyll static site generator on Alpine Linux     |
+| alpine-next                      | Next.js on Alpine Linux                          |
+| alpine-node                      | Node.js and npm on Alpine Linux                  |
+| alpine-pip                       | Python pip package manager on Alpine Linux       |
+| alpine-puppeteer                 | Puppeteer for browser automation on Alpine Linux |
+| alpine-python                    | Python runtime on Alpine Linux                   |
+| alpine-ruby                      | Ruby runtime on Alpine Linux                     |
+| alpine-workbox                   | Workbox for PWA development on Alpine Linux      |
 
 ## Quick Start
 
