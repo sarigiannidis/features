@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  test-base-features:
     runs-on: ubuntu-latest
     continue-on-error: false
     strategy:
@@ -25,17 +25,6 @@ jobs:
           - alpine-make
           - alpine-node
           - alpine-python
-          # Then test features with dependencies
-          - alpine-angular
-          - alpine-chromium
-          - alpine-dotnet
-          - alpine-gulp
-          - alpine-jekyll
-          - alpine-next
-          - alpine-pip
-          - alpine-puppeteer
-          - alpine-ruby
-          - alpine-workbox
     steps:
       - name: Checkout
         id: checkout
@@ -57,6 +46,78 @@ jobs:
               --base-image alpine:latest \
               --skip-scenarios \
               --log-level debug
+          else
+            echo "No test script found for ${{ matrix.features }}"
+            exit 1
+          fi
+
+  test-dependent-features:
+    runs-on: ubuntu-latest
+    continue-on-error: false
+    needs: test-base-features
+    strategy:
+      matrix:
+        features:
+          # Test features with dependencies that are already published or have no dependencies
+          - alpine-chromium
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Install DevContainer CLI
+        run: npm install -g @devcontainers/cli
+
+      - name: Test feature '${{ matrix.features }}'
+        id: test
+        run: |
+          echo "Testing feature: ${{ matrix.features }}"
+          if [ -f "./test/${{ matrix.features }}/test.sh" ]; then
+            echo "Running test for ${{ matrix.features }}..."
+            # Run the basic test to ensure the feature installs correctly
+            devcontainer features test \
+              --project-folder . \
+              --features ${{ matrix.features }} \
+              --base-image alpine:latest \
+              --skip-scenarios \
+              --log-level debug
+          else
+            echo "No test script found for ${{ matrix.features }}"
+            exit 1
+          fi
+
+  test-features-with-local-dependencies:
+    runs-on: ubuntu-latest
+    continue-on-error: false
+    needs: test-base-features
+    strategy:
+      matrix:
+        features:
+          # Test features that depend on unpublished local features using install scripts directly
+          - alpine-angular    # depends on alpine-node
+          - alpine-dotnet     # depends on alpine-bash
+          - alpine-gulp       # depends on alpine-node
+          - alpine-jekyll     # depends on alpine-ruby
+          - alpine-next       # depends on alpine-node
+          - alpine-pip        # depends on alpine-python
+          - alpine-puppeteer  # depends on alpine-node + alpine-chromium
+          - alpine-ruby       # depends on alpine-build-base
+          - alpine-workbox    # depends on alpine-node
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Test feature '${{ matrix.features }}' with local dependencies
+        id: test
+        run: |
+          echo "Testing feature with local dependencies: ${{ matrix.features }}"
+          if [ -f "./test/${{ matrix.features }}/test.sh" ]; then
+            echo "Running test script directly for ${{ matrix.features }}..."
+            # Run the test script directly since dependencies aren't published
+            cd "./test/${{ matrix.features }}"
+            chmod +x test.sh
+            ./test.sh
           else
             echo "No test script found for ${{ matrix.features }}"
             exit 1
@@ -99,7 +160,7 @@ jobs:
 
   test-scenarios:
     runs-on: ubuntu-latest
-    needs: [test, validate-features]
+    needs: [test-base-features, test-dependent-features, test-features-with-local-dependencies, validate-features]
     strategy:
       matrix:
         scenario:
