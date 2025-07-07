@@ -149,7 +149,7 @@ make list-features
 
 1. **Enable the test workflow** by pushing to trigger the first CI run
 2. **Update existing test scripts** to be more comprehensive
-3. **Add version parameters** to feature JSON files where applicable
+3. **Follow versioning policy** defined in VERSIONING.md for all changes
 4. **Setup branch protection** to require tests passing before merge
 
 ### **Medium-term Improvements**
@@ -158,6 +158,7 @@ make list-features
 2. **Security Scanning**: Add security checks for installed packages
 3. **Documentation Testing**: Validate README examples actually work
 4. **Integration Testing**: Test feature combinations more extensively
+5. **Automated Version Management**: Use GitHub Actions for versioning
 
 ### **Long-term Enhancements**
 

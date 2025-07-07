@@ -1,0 +1,267 @@
+name: "Automated Versioning"
+
+on:
+  pull_request:
+    types: [closed]
+    branches: ["main"]
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: 'Version bump type'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+        - patch
+        - minor
+        - major
+      features:
+        description: 'Specific features to version (comma-separated, empty for all)'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  determine-version-bump:
+    runs-on: ubuntu-latest
+    if: (github.event_name == 'pull_request' && github.event.pull_request.merged == true) || github.event_name == 'workflow_dispatch'
+    outputs:
+      version-type: ${{ steps.determine.outputs.version-type }}
+      features-to-update: ${{ steps.determine.outputs.features-to-update }}
+      skip-versioning: ${{ steps.determine.outputs.skip-versioning }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Determine version bump type
+        id: determine
+        run: |
+          set -e
+          
+          VERSION_TYPE="patch"
+          FEATURES_TO_UPDATE="all"
+          SKIP_VERSIONING="false"
+          
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            VERSION_TYPE="${{ github.event.inputs.version_type }}"
+            if [ -n "${{ github.event.inputs.features }}" ]; then
+              FEATURES_TO_UPDATE="${{ github.event.inputs.features }}"
+            fi
+          else
+            # Analyze PR for version bump type
+            PR_NUMBER="${{ github.event.pull_request.number }}"
+            
+            # Get PR labels
+            LABELS=$(gh pr view $PR_NUMBER --json labels --jq '.labels[].name' || echo "")
+            
+            # Get commit messages
+            COMMITS=$(gh pr view $PR_NUMBER --json commits --jq '.commits[].messageHeadline' || echo "")
+            
+            echo "PR Labels: $LABELS"
+            echo "Commit messages: $COMMITS"
+            
+            # Check for skip versioning
+            if echo "$LABELS" | grep -q "skip-versioning"; then
+              SKIP_VERSIONING="true"
+              echo "Skipping versioning due to skip-versioning label"
+            else
+              # Determine version type from labels
+              if echo "$LABELS" | grep -qE "(breaking-change|major)"; then
+                VERSION_TYPE="major"
+              elif echo "$LABELS" | grep -qE "(enhancement|feature|minor)"; then
+                VERSION_TYPE="minor"
+              elif echo "$LABELS" | grep -qE "(bug|fix|patch|documentation|dependencies)"; then
+                VERSION_TYPE="patch"
+              fi
+              
+              # Override with commit message conventions if more severe
+              if echo "$COMMITS" | grep -qE "(feat!:|BREAKING CHANGE:|^[^:]+!:)"; then
+                VERSION_TYPE="major"
+              elif [ "$VERSION_TYPE" != "major" ] && echo "$COMMITS" | grep -qE "^feat:"; then
+                VERSION_TYPE="minor"
+              fi
+              
+              # Determine which features were modified
+              CHANGED_FILES=$(gh pr view $PR_NUMBER --json files --jq '.files[].path' || echo "")
+              CHANGED_FEATURES=$(echo "$CHANGED_FILES" | grep "^src/" | cut -d'/' -f2 | sort | uniq | tr '\n' ',' | sed 's/,$//')
+              
+              if [ -n "$CHANGED_FEATURES" ]; then
+                FEATURES_TO_UPDATE="$CHANGED_FEATURES"
+              fi
+            fi
+          fi
+          
+          echo "version-type=$VERSION_TYPE" >> $GITHUB_OUTPUT
+          echo "features-to-update=$FEATURES_TO_UPDATE" >> $GITHUB_OUTPUT
+          echo "skip-versioning=$SKIP_VERSIONING" >> $GITHUB_OUTPUT
+          
+          echo "Version type: $VERSION_TYPE"
+          echo "Features to update: $FEATURES_TO_UPDATE"
+          echo "Skip versioning: $SKIP_VERSIONING"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  update-versions:
+    runs-on: ubuntu-latest
+    needs: determine-version-bump
+    if: needs.determine-version-bump.outputs.skip-versioning != 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Update feature versions
+        run: |
+          set -e
+          
+          VERSION_TYPE="${{ needs.determine-version-bump.outputs.version-type }}"
+          FEATURES_TO_UPDATE="${{ needs.determine-version-bump.outputs.features-to-update }}"
+          
+          echo "Updating versions with type: $VERSION_TYPE"
+          echo "Features to update: $FEATURES_TO_UPDATE"
+          
+          # Function to increment version
+          increment_version() {
+            local version=$1
+            local type=$2
+            
+            # Parse version components
+            local major=$(echo $version | cut -d. -f1)
+            local minor=$(echo $version | cut -d. -f2)
+            local patch=$(echo $version | cut -d. -f3)
+            
+            case $type in
+              major)
+                major=$((major + 1))
+                minor=0
+                patch=0
+                ;;
+              minor)
+                minor=$((minor + 1))
+                patch=0
+                ;;
+              patch)
+                patch=$((patch + 1))
+                ;;
+            esac
+            
+            echo "$major.$minor.$patch"
+          }
+          
+          # Get list of features to update
+          if [ "$FEATURES_TO_UPDATE" = "all" ]; then
+            FEATURES=$(ls src/ | tr '\n' ' ')
+          else
+            FEATURES=$(echo "$FEATURES_TO_UPDATE" | tr ',' ' ')
+          fi
+          
+          UPDATED_FEATURES=""
+          
+          for feature in $FEATURES; do
+            feature=$(echo $feature | xargs)  # trim whitespace
+            if [ -z "$feature" ]; then
+              continue
+            fi
+            
+            FEATURE_JSON="src/$feature/devcontainer-feature.json"
+            
+            if [ ! -f "$FEATURE_JSON" ]; then
+              echo "Warning: $FEATURE_JSON not found, skipping"
+              continue
+            fi
+            
+            # Get current version
+            CURRENT_VERSION=$(jq -r '.version // "1.0.0"' "$FEATURE_JSON")
+            
+            # Calculate new version
+            NEW_VERSION=$(increment_version "$CURRENT_VERSION" "$VERSION_TYPE")
+            
+            echo "Updating $feature: $CURRENT_VERSION → $NEW_VERSION"
+            
+            # Update the JSON file
+            jq --arg version "$NEW_VERSION" '.version = $version' "$FEATURE_JSON" > "${FEATURE_JSON}.tmp"
+            mv "${FEATURE_JSON}.tmp" "$FEATURE_JSON"
+            
+            UPDATED_FEATURES="$UPDATED_FEATURES $feature:$NEW_VERSION"
+          done
+          
+          # Check if any files were changed
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No version changes needed"
+            exit 0
+          fi
+          
+          # Commit changes
+          git add src/*/devcontainer-feature.json
+          git commit -m "chore: bump versions ($VERSION_TYPE)
+
+          Updated features:$UPDATED_FEATURES
+
+          Version bump type: $VERSION_TYPE
+          Triggered by: ${{ github.event_name }}
+          
+          [skip ci]"
+          
+          # Create tags
+          REPO_VERSION=$(date +"%Y.%m.%d")
+          EXISTING_TAG_COUNT=$(git tag -l "${REPO_VERSION}*" | wc -l)
+          if [ "$EXISTING_TAG_COUNT" -gt 0 ]; then
+            REPO_VERSION="${REPO_VERSION}.$EXISTING_TAG_COUNT"
+          fi
+          
+          git tag -a "v$REPO_VERSION" -m "Release v$REPO_VERSION
+
+          Version bump: $VERSION_TYPE
+          Features updated:$UPDATED_FEATURES"
+          
+          # Create feature-specific tags
+          for feature_version in $UPDATED_FEATURES; do
+            feature=$(echo $feature_version | cut -d: -f1)
+            version=$(echo $feature_version | cut -d: -f2)
+            git tag -a "$feature-v$version" -m "Release $feature v$version"
+          done
+          
+          # Push changes and tags
+          git push origin main
+          git push origin --tags
+          
+          # Output summary
+          echo "::notice::Version bump completed: $VERSION_TYPE"
+          echo "::notice::Repository version: v$REPO_VERSION"
+          echo "::notice::Updated features:$UPDATED_FEATURES"
+
+      - name: Create release summary
+        if: always()
+        run: |
+          if [ -n "$(git log --oneline -1 --grep='chore: bump versions')" ]; then
+            echo "## 🚀 Version Bump Summary" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**Type:** ${{ needs.determine-version-bump.outputs.version-type }}" >> $GITHUB_STEP_SUMMARY
+            echo "**Features:** ${{ needs.determine-version-bump.outputs.features-to-update }}" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "All feature versions have been updated and tagged." >> $GITHUB_STEP_SUMMARY
+            echo "The release workflow will automatically publish the updated features." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "## ℹ️ No Version Changes" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "No version updates were needed." >> $GITHUB_STEP_SUMMARY
+          fi

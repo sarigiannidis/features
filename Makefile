@@ -1,4 +1,6 @@
-.PHONY: help test test-local validate lint format clean install-deps setup-hooks create-feature
+.PHONY: help test test-local validate lint format clean install-deps setup-hooks create-feature \
+         version-bump version-check version-list version-patch version-minor version-major \
+         changelog
 
 # Default target
 help: ## Show this help message
@@ -127,3 +129,48 @@ list-features: ## List all available features
 			fi; \
 		fi; \
 	done
+
+# Version management
+version-list: ## List all features and their current versions
+	@./scripts/bump-version.sh list
+
+version-check: ## Check version consistency and format
+	@./scripts/check-versions.sh --verbose
+
+version-fix: ## Automatically fix common version issues
+	@./scripts/check-versions.sh --fix
+
+version-patch: ## Bump patch version for all features (usage: make version-patch [FEATURE=name])
+	@if [ -n "$(FEATURE)" ]; then \
+		./scripts/bump-version.sh patch $(FEATURE); \
+	else \
+		./scripts/bump-version.sh patch; \
+	fi
+
+version-minor: ## Bump minor version for all features (usage: make version-minor [FEATURE=name])
+	@if [ -n "$(FEATURE)" ]; then \
+		./scripts/bump-version.sh minor $(FEATURE); \
+	else \
+		./scripts/bump-version.sh minor; \
+	fi
+
+version-major: ## Bump major version for all features (usage: make version-major [FEATURE=name])
+	@if [ -n "$(FEATURE)" ]; then \
+		./scripts/bump-version.sh major $(FEATURE); \
+	else \
+		./scripts/bump-version.sh major; \
+	fi
+
+version-report: ## Generate a version report
+	@./scripts/check-versions.sh --report
+
+# Documentation and changelog
+changelog: ## Generate changelog from git history
+	@./scripts/generate-changelog.sh
+
+changelog-since: ## Generate changelog since specific tag (usage: make changelog-since TAG=v1.0.0)
+	@if [ -z "$(TAG)" ]; then \
+		echo "Please specify a tag: make changelog-since TAG=v1.0.0"; \
+		exit 1; \
+	fi
+	@./scripts/generate-changelog.sh --since $(TAG)
