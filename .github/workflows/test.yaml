@@ -16,6 +16,7 @@ jobs:
         features:
           - alpine-angular
           - alpine-bash
+          - alpine-build-base
           - alpine-chromium
           - alpine-dotnet
           - alpine-git
@@ -75,6 +76,7 @@ jobs:
     strategy:
       matrix:
         scenario:
+          - alpine-build-base
           - alpine-git
           - alpine-jekyll
           - alpine-jq

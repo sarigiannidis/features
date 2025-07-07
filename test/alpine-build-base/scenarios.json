@@ -1,29 +1,31 @@
 {
-    "make_basic": {
+    "build_base_basic": {
         "image": "alpine:latest",
         "features": {
-            "alpine-make": {}
+            "alpine-build-base": {}
         }
     },
-    "make_with_bash": {
+    "build_base_with_bash": {
         "image": "alpine:latest", 
         "features": {
             "alpine-bash": {},
-            "alpine-make": {}
+            "alpine-build-base": {}
         }
     },
-    "make_with_dependencies": {
+    "build_base_dev_environment": {
         "image": "alpine:latest",
         "features": {
             "alpine-bash": {},
             "alpine-git": {},
-            "alpine-make": {}
+            "alpine-build-base": {}
         }
     },
-    "make_with_build_base": {
+    "build_base_full_dev": {
         "image": "alpine:latest",
         "features": {
-            "alpine-make": {},
+            "alpine-bash": {},
+            "alpine-git": {},
+            "alpine-jq": {},
             "alpine-build-base": {}
         }
     }

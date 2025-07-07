@@ -1,29 +1,27 @@
 # GNU Make on Alpine
 
-Install GNU Make build tool and optional build essentials on Alpine Linux containers.
+Install GNU Make build automation tool on Alpine Linux containers.
 
-GNU Make is a build automation tool that controls the generation of executables and other non-source files from source code. This feature installs GNU Make and optionally includes build-base package with essential build tools like GCC, libc-dev, and other common development dependencies.
+GNU Make is a build automation tool that controls the generation of executables and other non-source files from source code. This feature installs only GNU Make. For a complete build environment with GCC, use the `alpine-build-base` feature which depends on this one.
 
 ## Example Usage
 
 ```json
 {
     "features": {
-        "ghcr.io/sarigiannidis/features/alpine-make:latest": {
-            "includeBuildBase": true
-        }
+        "ghcr.io/sarigiannidis/features/alpine-make:latest": {}
     }
 }
 ```
 
-### Minimal Installation (Make only)
+### With Full Build Environment
+
+For C/C++ development, use `alpine-build-base` which includes make + gcc + build tools:
 
 ```json
 {
     "features": {
-        "ghcr.io/sarigiannidis/features/alpine-make:latest": {
-            "includeBuildBase": false
-        }
+        "ghcr.io/sarigiannidis/features/alpine-build-base:latest": {}
     }
 }
 ```
@@ -35,37 +33,27 @@ GNU Make is a build automation tool that controls the generation of executables 
     "features": {
         "ghcr.io/sarigiannidis/features/alpine-bash:latest": {},
         "ghcr.io/sarigiannidis/features/alpine-git:latest": {},
-        "ghcr.io/sarigiannidis/features/alpine-make:latest": {
-            "includeBuildBase": true
-        }
+        "ghcr.io/sarigiannidis/features/alpine-make:latest": {}
     }
 }
 ```
 
-## Options
-
-| Option | Description | Default |
-|--------|-------------|---------|
-| includeBuildBase | Include build-base package with GCC, libc-dev, and other build tools | true |
-
 ## What's Included
 
-### Always Installed
-- `make` - GNU Make build tool
-
-### When includeBuildBase=true (default)
-- `build-base` package which includes:
-  - `gcc` - GNU Compiler Collection
-  - `libc-dev` - C library development files
-  - `binutils` - Binary utilities
-  - `make` - GNU Make (already included above)
+- `make` - GNU Make build automation tool only
 
 ## Use Cases
 
-- Building C/C++ projects
-- Automating build processes
-- Running Makefiles for various projects
-- Development environments requiring compilation tools
+- Running Makefiles for simple projects
+- Build automation without compilation
+- Lightweight environments where only make is needed
+- Base dependency for other build tools
+
+## Related Features
+
+- **`alpine-build-base`** - Complete build environment (includes make + gcc + build tools)
+- **`alpine-node`** - Node.js development (often used with make for build scripts)
+- **`alpine-python`** - Python development (may use make for automation)
 
 ## Supported Platforms
 

@@ -2,14 +2,7 @@
     "name": "GNU Make on Alpine",
     "id": "alpine-make",
     "version": "1.0.0",
-    "description": "Install GNU Make build tool and build essentials on Alpine Linux",
-    "options": {
-        "includeBuildBase": {
-            "type": "boolean",
-            "default": true,
-            "description": "Include build-base package with common build tools (gcc, libc-dev, etc.)"
-        }
-    },
+    "description": "Install GNU Make build automation tool on Alpine Linux",
     "installsAfter": [
         "ghcr.io/sarigiannidis/features/alpine-bash"
     ]
