@@ -1,0 +1,31 @@
+{
+    "jq_basic": {
+        "image": "alpine:latest",
+        "features": {
+            "alpine-jq": {}
+        }
+    },
+    "jq_with_bash": {
+        "image": "alpine:latest", 
+        "features": {
+            "alpine-bash": {},
+            "alpine-jq": {}
+        }
+    },
+    "jq_with_dev_tools": {
+        "image": "alpine:latest",
+        "features": {
+            "alpine-bash": {},
+            "alpine-git": {},
+            "alpine-jq": {}
+        }
+    },
+    "jq_with_node_dev": {
+        "image": "alpine:latest",
+        "features": {
+            "alpine-bash": {},
+            "alpine-node": {},
+            "alpine-jq": {}
+        }
+    }
+}
