@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 
 # Simple test functions
 check() {
-    local desc="$1"
+    desc="$1"
     shift
     echo "Testing: $desc"
     if "$@"; then
@@ -27,7 +27,7 @@ check "gh is installed" command -v gh
 check "gh version" gh --version
 
 # Test basic git functionality
-check "git config works" bash -c "git config --global user.name 'Test User' && git config --global user.email 'test@example.com'"
+check "git config works" sh -c "git config --global user.name 'Test User' && git config --global user.email 'test@example.com'"
 
 # Create a test repository
 mkdir -p /tmp/git-test

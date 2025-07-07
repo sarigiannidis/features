@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-# Pre-commit hook to validate features before commit
+# Pre-commit hook to validate f    if [ -n "$(echo "$file" | grep "devcontainer-feature.json")" ]; thenatures before commit
 # Install: ln -s ../../scripts/pre-commit.sh .git/hooks/pre-commit
 
 set -e
@@ -49,7 +49,7 @@ done
 
 # Validate shell scripts
 for file in $staged_files; do
-    if [[ $file == *".sh" ]]; then
+    if [ -n "$(echo "$file" | grep "\.sh$")" ]; then
         if ! validate_shell "$file"; then
             validation_failed=true
         fi

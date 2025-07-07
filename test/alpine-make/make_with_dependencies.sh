@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 
 # Simple test functions
 check() {
-    local desc="$1"
+    desc="$1"
     shift
     echo "Testing: $desc"
     if "$@"; then
@@ -29,11 +29,11 @@ cd /tmp/make-deps-test
 
 # Initialize git repo
 check "git init works" git init
-check "git config works" bash -c "git config user.name 'Test' && git config user.email 'test@example.com'"
+check "git config works" sh -c "git config user.name 'Test' && git config user.email 'test@example.com'"
 
 # Create a Makefile that uses git
 cat > Makefile << 'EOF'
-SHELL := /bin/bash
+SHELL := /bin/sh
 COMMIT_HASH := $(shell git rev-parse --short HEAD 2>/dev/null || echo "unknown")
 BRANCH := $(shell git branch --show-current 2>/dev/null || echo "unknown")
 
@@ -51,7 +51,7 @@ build-info:
 	@echo "Git branch: $(BRANCH)"
 
 commit:
-	@if [[ -n "$$(git status --porcelain)" ]]; then \
+	@if [ -n "$$(git status --porcelain)" ]; then \
 		echo "Committing changes..."; \
 		git add .; \
 		git commit -m "Automated commit from make"; \

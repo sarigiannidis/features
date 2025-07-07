@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 
 # Script to generate a new DevContainer feature template
 # Usage: ./scripts/create-feature.sh <feature-name> [description]
 
 set -e
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 FEATURES_DIR="$REPO_ROOT/src"
 TEST_DIR="$REPO_ROOT/test"
@@ -17,8 +17,8 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 print_status() {
-    local color=$1
-    local message=$2
+    color=$1
+    message=$2
     echo -e "${color}${message}${NC}"
 }
 
@@ -40,9 +40,9 @@ EOF
 }
 
 create_feature_json() {
-    local feature_name=$1
-    local description=$2
-    local feature_dir="$FEATURES_DIR/$feature_name"
+    feature_name=$1
+    description=$2
+    feature_dir="$FEATURES_DIR/$feature_name"
     
     cat > "$feature_dir/devcontainer-feature.json" << EOF
 {
@@ -65,8 +65,8 @@ EOF
 }
 
 create_install_script() {
-    local feature_name=$1
-    local feature_dir="$FEATURES_DIR/$feature_name"
+    feature_name=$1
+    feature_dir="$FEATURES_DIR/$feature_name"
     
     cat > "$feature_dir/install.sh" << 'EOF'
 #!/bin/sh
@@ -95,9 +95,9 @@ EOF
 }
 
 create_readme() {
-    local feature_name=$1
-    local description=$2
-    local feature_dir="$FEATURES_DIR/$feature_name"
+    feature_name=$1
+    description=$2
+    feature_dir="$FEATURES_DIR/$feature_name"
     
     cat > "$feature_dir/README.md" << EOF
 # $description
@@ -134,8 +134,8 @@ EOF
 }
 
 create_test_script() {
-    local feature_name=$1
-    local test_dir="$TEST_DIR/$feature_name"
+    feature_name=$1
+    test_dir="$TEST_DIR/$feature_name"
     
     mkdir -p "$test_dir"
     
@@ -163,8 +163,8 @@ EOF
 }
 
 create_scenarios_json() {
-    local feature_name=$1
-    local test_dir="$TEST_DIR/$feature_name"
+    feature_name=$1
+    test_dir="$TEST_DIR/$feature_name"
     
     cat > "$test_dir/scenarios.json" << EOF
 {
@@ -199,17 +199,17 @@ main() {
         exit 0
     fi
     
-    local feature_name=$1
-    local description=${2:-"$feature_name on alpine"}
+    feature_name=$1
+    description=${2:-"$feature_name on alpine"}
     
     # Validate feature name
-    if [[ ! $feature_name =~ ^alpine- ]]; then
+    if [ "$feature_name" = "${feature_name#alpine-}" ]; then
         print_status $RED "Feature name should start with 'alpine-'"
         exit 1
     fi
     
-    local feature_dir="$FEATURES_DIR/$feature_name"
-    local test_dir="$TEST_DIR/$feature_name"
+    feature_dir="$FEATURES_DIR/$feature_name"
+    test_dir="$TEST_DIR/$feature_name"
     
     # Check if feature already exists
     if [ -d "$feature_dir" ]; then

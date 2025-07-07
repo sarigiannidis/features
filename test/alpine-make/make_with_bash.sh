@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 
 # Simple test functions
 check() {
-    local desc="$1"
+    desc="$1"
     shift
     echo "Testing: $desc"
     if "$@"; then
@@ -30,26 +30,26 @@ cd /tmp/make-bash-test
 
 # Create a Makefile that uses bash features
 cat > Makefile << 'EOF'
-SHELL := /bin/bash
+SHELL := /bin/sh
 .PHONY: all test-bash test-arrays test-conditions
 
 all: test-bash test-arrays test-conditions
 
 test-bash:
 	@echo "Testing bash in make..."
-	@bash -c 'echo "Bash works in make!"'
+	@sh -c 'echo "Bash works in make!"'
 
 test-arrays:
 	@echo "Testing bash arrays..."
-	@bash -c 'arr=(one two three); echo "Array element 2: $${arr[1]}"'
+	@sh -c 'arr="one two three"; echo "Array element 2: $$(echo $${arr} | cut -d" " -f2)"'
 
 test-conditions:
 	@echo "Testing bash conditions..."
-	@bash -c 'if [[ "test" == "test" ]]; then echo "Bash conditions work!"; fi'
+	@sh -c 'if [ "test" = "test" ]; then echo "Bash conditions work!"; fi'
 
 test-functions:
 	@echo "Testing bash functions..."
-	@bash -c 'function greet() { echo "Hello $$1!"; }; greet "Make"'
+	@sh -c 'greet() { echo "Hello $$1!"; }; greet "Make"'
 EOF
 
 # Test make with bash features
@@ -60,7 +60,7 @@ check "make with bash functions works" make test-functions | grep -q "Hello Make
 
 # Test make with bash scripts
 cat > build.sh << 'EOF'
-#!/bin/bash
+#!/bin/sh
 echo "Running bash build script..."
 echo "Arguments received: $@"
 EOF
