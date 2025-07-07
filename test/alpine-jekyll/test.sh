@@ -2,7 +2,7 @@
 
 set -e
 
-source dev-container-features-test-lib
+. dev-container-features-test-lib
 
 check "jekyll --version" | grep -E 'jekyll [0-9]+\.[0-9]+\.[0-9]+'
 

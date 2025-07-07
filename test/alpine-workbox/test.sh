@@ -2,7 +2,7 @@
 
 set -e
 
-source dev-container-features-test-lib
+. dev-container-features-test-lib
 
 check "workbox --version" | grep -E '[0-9]+\.[0-9]+\.[0-9]+'
 

@@ -2,7 +2,7 @@
 
 set -e
 
-source dev-container-features-test-lib
+. dev-container-features-test-lib
 
 check "python --version" | grep 'Python 3'
 check "python3 --version" | grep 'Python 3'

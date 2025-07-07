@@ -2,7 +2,7 @@
 
 set -e
 
-source dev-container-features-test-lib
+. dev-container-features-test-lib
 
 # Test make installation and version
 check "make is installed" which make

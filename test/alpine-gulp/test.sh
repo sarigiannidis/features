@@ -2,7 +2,7 @@
 
 set -e
 
-source dev-container-features-test-lib
+. dev-container-features-test-lib
 
 check "gulp --version" | grep 'CLI version'
 
