@@ -47,7 +47,7 @@ jobs:
             cd "./test/${{ matrix.features }}"
             devcontainer features test \
               --features ../../src \
-              --test-folder . \
+              --project-folder . \
               --log-level debug
           else
             echo "No test script found for ${{ matrix.features }}"
@@ -92,8 +92,9 @@ jobs:
           imageName: ghcr.io/devcontainers/ci/test-scenario:latest
           runCmd: |
             echo "Testing scenario: ${{ matrix.scenario }}"
-            # Test with scenario configuration
+            # Test with scenario configuration  
             devcontainer features test \
-              --features ./src \
-              --test-scenarios ./test/${{ matrix.scenario }}/scenarios.json \
+              --project-folder . \
+              --features ./src/${{ matrix.scenario }} \
+              --filter ${{ matrix.scenario }} \
               --log-level debug
