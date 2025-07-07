@@ -1,7 +1,7 @@
 
 # gulp on alpine (alpine-gulp)
 
-Install gulp on alpine
+Installs Gulp toolkit for automating development workflows on Alpine Linux
 
 ## Example Usage
 

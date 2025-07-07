@@ -1,7 +1,7 @@
 
 # python on alpine (alpine-python)
 
-Install python on alpine
+Installs Python programming language and runtime on Alpine Linux
 
 ## Example Usage
 

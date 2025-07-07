@@ -1,7 +1,7 @@
 
 # ruby on alpine (alpine-ruby)
 
-Install ruby on alpine
+Installs Ruby programming language and runtime on Alpine Linux
 
 ## Example Usage
 

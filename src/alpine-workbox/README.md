@@ -1,7 +1,7 @@
 
 # workbox on alpine (alpine-workbox)
 
-Install workbox on alpine
+Installs Workbox libraries for adding progressive web app features on Alpine Linux
 
 ## Example Usage
 

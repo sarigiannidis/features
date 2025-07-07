@@ -1,7 +1,7 @@
 
 # dotnet on alpine (alpine-dotnet)
 
-Install dotnet on alpine
+Installs .NET SDK and runtime on Alpine Linux (requires bash for Microsoft's official installer)
 
 ## Example Usage
 
@@ -21,7 +21,13 @@ Install dotnet on alpine
 | runtime | Installs just the shared runtime, not the entire SDK. | string | dotnet |
 | version | Version of the .NET SDK to install. | string | latest |
 
-## links
+## dotnet
+
+### Why bash is required
+
+This feature depends on `alpine-bash` because it uses the `dotnet-install.sh` script from Microsoft, which requires bash to run.
+
+### Links
 
 * <https://dotnet.microsoft.com/en-us/download/dotnet/scripts>
 * <https://learn.microsoft.com/en-gb/dotnet/core/tools/dotnet-install-script>

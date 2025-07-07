@@ -1,7 +1,7 @@
 
 # bash on alpine (alpine-bash)
 
-bash on alpine
+Installs Bash shell as an alternative to Alpine's default ash shell on Alpine Linux
 
 ## Example Usage
 

@@ -1,7 +1,7 @@
 
 # git on alpine (alpine-git)
 
-Install git on alpine
+Installs Git version control system on Alpine Linux
 
 ## Example Usage
 

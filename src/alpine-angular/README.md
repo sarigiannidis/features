@@ -1,7 +1,7 @@
 
 # angular on alpine (alpine-angular)
 
-Install angular on alpine
+Installs Angular CLI for building modern web applications on Alpine Linux
 
 ## Example Usage
 
