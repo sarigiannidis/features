@@ -97,9 +97,12 @@ jobs:
             if [ -f "$feature_json" ]; then
               echo "Processing feature: $feature_name"
               
-              # Check if feature has dependencies
-              if jq -e '.dependsOn' "$feature_json" > /dev/null 2>&1; then
-                echo "Feature $feature_name has dependencies"
+              # Check if feature has dependencies (both dependsOn and installsAfter)
+              has_depends_on=$(jq -e '.dependsOn' "$feature_json" > /dev/null 2>&1 && echo "true" || echo "false")
+              has_installs_after=$(jq -e '.installsAfter' "$feature_json" > /dev/null 2>&1 && echo "true" || echo "false")
+              
+              if [ "$has_depends_on" = "true" ] || [ "$has_installs_after" = "true" ]; then
+                echo "Feature $feature_name has dependencies (dependsOn: $has_depends_on, installsAfter: $has_installs_after)"
                 features_with_deps+=("$feature_name")
               else
                 echo "Feature $feature_name has no dependencies"

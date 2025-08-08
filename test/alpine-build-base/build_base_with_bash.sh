@@ -29,7 +29,7 @@ check "make is installed" command -v make
 
 # Test bash-specific functionality
 check "bash can run scripts" sh -c 'echo "Bash is working"'
-check "bash arrays work" sh -c 'arr=(1 2 3); echo ${arr[1]}' | grep -q "2"
+check "bash arrays work" sh -c "arr=(1 2 3); echo \${arr[1]}" | grep -q "2"
 
 # Test compilation with bash
 cat > /tmp/test_bash.c << 'EOF'

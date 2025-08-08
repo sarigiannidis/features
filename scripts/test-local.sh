@@ -26,11 +26,11 @@ print_status() {
 # Function to test a single feature
 test_feature() {
     feature_name=$1
-    print_status $YELLOW "Testing feature: $feature_name"
+    print_status "$YELLOW" "Testing feature: $feature_name"
     
     # Check if feature exists
     if [ ! -d "$FEATURES_DIR/$feature_name" ]; then
-        print_status $RED "Feature '$feature_name' not found in $FEATURES_DIR"
+        print_status "$RED" "Feature '$feature_name' not found in $FEATURES_DIR"
         return 1
     fi
     
@@ -48,10 +48,10 @@ test_feature() {
     if command -v devcontainer >/dev/null 2>&1; then
         # Use devcontainer CLI if available
         if devcontainer features test --project-folder "$REPO_ROOT" --features "$feature_name" --base-image alpine:latest --log-level info; then
-            print_status $GREEN "✓ Test passed for $feature_name"
+            print_status "$GREEN" "✓ Test passed for $feature_name"
             return 0
         else
-            print_status $RED "✗ Test failed for $feature_name"
+            print_status "$RED" "✗ Test failed for $feature_name"
             return 1
         fi
     else
@@ -86,11 +86,11 @@ validate_feature() {
     
     # Check if install.sh is executable
     if [ ! -x "$feature_dir/install.sh" ]; then
-        print_status $YELLOW "Making install.sh executable for $feature_name"
+        print_status "$YELLOW" "Making install.sh executable for $feature_name"
         chmod +x "$feature_dir/install.sh"
     fi
     
-    print_status $GREEN "✓ Feature structure valid for $feature_name"
+    print_status "$GREEN" "✓ Feature structure valid for $feature_name"
     return 0
 }
 

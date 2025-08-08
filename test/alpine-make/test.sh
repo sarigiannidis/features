@@ -33,7 +33,7 @@ EOF
 # Test make commands (file operations only, no compilation)
 check "make test target" cd /tmp && make -f test-makefile test
 check "make build target" cd /tmp && make -f test-makefile hello.txt
-check "verify created file" cd /tmp && test -f hello.txt && cat hello.txt | grep "Hello from make"
+check "verify created file" cd /tmp && test -f hello.txt && grep "Hello from make" hello.txt
 check "make hello target" cd /tmp && make -f test-makefile hello
 check "make clean target" cd /tmp && make -f test-makefile clean && test ! -f hello.txt
 

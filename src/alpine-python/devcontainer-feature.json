@@ -1,6 +1,6 @@
 {
   "name": "python on alpine",
   "id": "alpine-python",
-  "version": "1.0.3",
+  "version": "1.0.1",
   "description": "Installs Python programming language and runtime on Alpine Linux"
 }

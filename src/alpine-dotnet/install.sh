@@ -41,6 +41,18 @@ if ! grep -q "Microsoft Corporation" dotnet-install.sh; then
     exit 1
 fi
 
+# Additional security checks
+if grep -q "rm -rf /" dotnet-install.sh || grep -q "curl.*|.*sh" dotnet-install.sh; then
+    echo "ERROR: Downloaded script contains suspicious commands"
+    exit 1
+fi
+
+# Verify script contains expected functions
+if ! grep -q "get_normalized_architecture_for_current_os" dotnet-install.sh; then
+    echo "ERROR: Downloaded script doesn't contain expected .NET installer functions"
+    exit 1
+fi
+
 # Make the script executable
 chmod +x dotnet-install.sh
 
@@ -70,7 +82,7 @@ fi
 echo "Installing .NET with args: $INSTALL_ARGS"
 
 # Execute the install script with the configured options
-. ./dotnet-install.sh $INSTALL_ARGS
+. ./dotnet-install.sh "$INSTALL_ARGS"
 
 # Clean up
 cd /
