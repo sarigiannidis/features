@@ -107,7 +107,7 @@ make test-feature FEATURE=alpine-rust   # Test your changes
 
 5. **Version Management:**
 ```bash
-make version-list    # Show current versions (all currently 1.0.1 except alpine-python: 1.0.3)
+make version-list    # Show current versions for all features (output will vary)
 make version-patch   # Bump patch version for all features
 make version-minor FEATURE=alpine-node  # Bump specific feature
 ```
