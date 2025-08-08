@@ -42,7 +42,7 @@ if ! grep -q "Microsoft Corporation" dotnet-install.sh; then
 fi
 
 # Additional security checks
-if grep -q "rm -rf /" dotnet-install.sh || grep -q "curl.*|.*sh" dotnet-install.sh; then
+if grep -q "rm -rf /" dotnet-install.sh || grep -E -q 'curl[[:space:]].*\|[[:space:]]*(sh|bash)' dotnet-install.sh; then
     echo "ERROR: Downloaded script contains suspicious commands"
     exit 1
 fi
