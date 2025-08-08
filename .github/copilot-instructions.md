@@ -42,7 +42,25 @@ This repository contains a collection of **18 DevContainer features** specifical
 ```
 
 ### Available Features
-18 features total: alpine-angular, alpine-bash, alpine-build-base, alpine-chromium, alpine-docker-outside-of-docker, alpine-dotnet, alpine-git, alpine-gulp, alpine-jekyll, alpine-jq, alpine-make, alpine-next, alpine-node, alpine-pip, alpine-puppeteer, alpine-python, alpine-ruby, alpine-workbox
+**18 features total:**
+- alpine-angular
+- alpine-bash
+- alpine-build-base
+- alpine-chromium
+- alpine-docker-outside-of-docker
+- alpine-dotnet
+- alpine-git
+- alpine-gulp
+- alpine-jekyll
+- alpine-jq
+- alpine-make
+- alpine-next
+- alpine-node
+- alpine-pip
+- alpine-puppeteer
+- alpine-python
+- alpine-ruby
+- alpine-workbox
 
 ## Build, Test, and Development Workflow
 
