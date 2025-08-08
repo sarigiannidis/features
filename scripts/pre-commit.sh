@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Pre-commit hook to validate f    if [ -n "$(echo "$file" | grep "devcontainer-feature.json")" ]; thenatures before commit
 # Install: ln -s ../../scripts/pre-commit.sh .git/hooks/pre-commit
