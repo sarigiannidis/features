@@ -15,7 +15,7 @@ npm install -g @angular/cli
 # Verify installation
 if command -v ng > /dev/null 2>&1; then
     echo "Angular CLI installed successfully"
-    ng version || echo "Angular CLI version info displayed above"
+    ng version || echo "Unable to retrieve Angular CLI version information"
 else
     echo "ERROR: Angular CLI installation failed"
     exit 1
