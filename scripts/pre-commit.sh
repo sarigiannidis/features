@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Pre-commit hook to validate f    if [ -n "$(echo "$file" | grep "devcontainer-feature.json")" ]; thenatures before commit
 # Install: ln -s ../../scripts/pre-commit.sh .git/hooks/pre-commit
@@ -9,7 +9,7 @@ echo "Running pre-commit validation..."
 
 # Function to validate feature JSON files
 validate_json() {
-    local file=$1
+    file="$1"
     if ! jq . "$file" >/dev/null 2>&1; then
         echo "❌ Invalid JSON syntax in $file"
         return 1
@@ -20,7 +20,7 @@ validate_json() {
 
 # Function to validate shell scripts
 validate_shell() {
-    local file=$1
+    file="$1"
     if command -v shellcheck >/dev/null 2>&1; then
         if ! shellcheck "$file"; then
             echo "❌ Shell script validation failed for $file"
@@ -40,7 +40,7 @@ validation_failed=false
 
 # Validate JSON files
 for file in $staged_files; do
-    if [[ $file == *"devcontainer-feature.json" ]]; then
+    if echo "$file" | grep -q "devcontainer-feature.json"; then
         if ! validate_json "$file"; then
             validation_failed=true
         fi
@@ -49,7 +49,7 @@ done
 
 # Validate shell scripts
 for file in $staged_files; do
-    if [ -n "$(echo "$file" | grep "\.sh$")" ]; then
+    if echo "$file" | grep -q "\.sh$"; then
         if ! validate_shell "$file"; then
             validation_failed=true
         fi
