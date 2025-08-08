@@ -1,7 +1,7 @@
 {
   "name": "jq JSON processor on Alpine",
   "id": "alpine-jq",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Installs jq lightweight command-line JSON processor on Alpine Linux",
   "installsAfter": [
     "ghcr.io/sarigiannidis/features/alpine-bash"
