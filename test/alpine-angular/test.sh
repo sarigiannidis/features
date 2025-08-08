@@ -19,7 +19,7 @@ check "angular cli can list commands" sh -c 'ng help | grep -E "(new|build|serve
 check "angular cli new command available" sh -c 'ng help new | grep "Creates a new workspace"'
 
 # Test that basic Angular CLI functionality works
-check "angular cli version output format" sh -c 'ng --version | grep -E "@angular/cli.*[0-9]+\.[0-9]+\.[0-9]+"'
+check "angular cli version output format" sh -c 'ng --version | grep -E "@angular/cli[[:space:]]+[0-9]+\.[0-9]+\.[0-9]+([-+][A-Za-z0-9\.\-]+)?"'
 
 # Report result
 reportResults
