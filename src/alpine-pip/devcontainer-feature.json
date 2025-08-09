@@ -1,7 +1,7 @@
 {
   "name": "Python pip on Alpine",
   "id": "alpine-pip",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Installs pip Python package installer on Alpine Linux",
   "dependsOn": {
     "ghcr.io/sarigiannidis/features/alpine-python:latest": {}
