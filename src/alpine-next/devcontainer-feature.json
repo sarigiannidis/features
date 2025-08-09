@@ -1,5 +1,5 @@
 {
-  "name": "next on alpine",
+  "name": "Next.js on Alpine",
   "id": "alpine-next",
   "version": "1.0.2",
   "description": "Installs Next.js React framework for production-ready web applications on Alpine Linux",

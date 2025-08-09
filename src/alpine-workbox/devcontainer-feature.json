@@ -1,5 +1,5 @@
 {
-  "name": "workbox on alpine",
+  "name": "Workbox on Alpine",
   "id": "alpine-workbox",
   "version": "1.0.2",
   "description": "Installs Workbox libraries for adding progressive web app features on Alpine Linux",

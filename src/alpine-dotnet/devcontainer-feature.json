@@ -1,5 +1,5 @@
 {
-  "name": "dotnet on alpine",
+  "name": ".NET SDK on Alpine",
   "id": "alpine-dotnet",
   "version": "1.0.2",
   "description": "Installs .NET SDK and runtime on Alpine Linux (requires bash for Microsoft's official installer)",

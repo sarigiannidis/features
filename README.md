@@ -11,12 +11,15 @@ A collection of DevContainer features specifically designed for Alpine Linux con
 |----------------------------------|---------------------------------------------------|
 | alpine-angular                   | Angular CLI on Alpine Linux                      |
 | alpine-bash                      | Bash shell on Alpine Linux                       |
+| alpine-build-base                | Essential build tools (gcc, g++, make) on Alpine Linux |
 | alpine-chromium                  | Chromium browser on Alpine Linux                 |
 | alpine-docker-outside-of-docker  | Docker CLI with socket forwarding for Alpine     |
 | alpine-dotnet                    | .NET SDK on Alpine Linux                         |
 | alpine-git                       | Git and GitHub CLI on Alpine Linux               |
 | alpine-gulp                      | Gulp task runner on Alpine Linux                 |
 | alpine-jekyll                    | Jekyll static site generator on Alpine Linux     |
+| alpine-jq                        | jq JSON processor on Alpine Linux                |
+| alpine-make                      | GNU Make build automation tool on Alpine Linux   |
 | alpine-next                      | Next.js on Alpine Linux                          |
 | alpine-node                      | Node.js and npm on Alpine Linux                  |
 | alpine-pip                       | Python pip package manager on Alpine Linux       |

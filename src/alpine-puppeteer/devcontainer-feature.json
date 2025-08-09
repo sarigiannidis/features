@@ -1,5 +1,5 @@
 {
-  "name": "puppeteer on alpine",
+  "name": "Puppeteer on Alpine",
   "id": "alpine-puppeteer",
   "version": "1.0.2",
   "description": "Installs Puppeteer Node.js library for controlling headless Chrome on Alpine Linux",

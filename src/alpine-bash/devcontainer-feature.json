@@ -1,5 +1,5 @@
 {
-  "name": "bash on alpine",
+  "name": "Bash Shell on Alpine",
   "id": "alpine-bash",
   "version": "1.0.2",
   "description": "Installs Bash shell as an alternative to Alpine's default ash shell on Alpine Linux",

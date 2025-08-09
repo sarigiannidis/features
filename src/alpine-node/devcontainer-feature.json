@@ -1,5 +1,5 @@
 {
-  "name": "node on alpine",
+  "name": "Node.js on Alpine",
   "id": "alpine-node",
   "version": "1.0.2",
   "description": "Installs Node.js JavaScript runtime and npm package manager on Alpine Linux"
