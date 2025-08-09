@@ -1,7 +1,7 @@
 {
   "name": "Gulp Task Runner on Alpine",
   "id": "alpine-gulp",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Installs Gulp toolkit for automating development workflows on Alpine Linux",
   "dependsOn": {
     "ghcr.io/sarigiannidis/features/alpine-node:latest": {}

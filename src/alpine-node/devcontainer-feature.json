@@ -1,6 +1,6 @@
 {
   "name": "Node.js on Alpine",
   "id": "alpine-node",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Installs Node.js JavaScript runtime and npm package manager on Alpine Linux"
 }
