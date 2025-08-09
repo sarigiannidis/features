@@ -235,16 +235,27 @@ jobs:
             REPO_VERSION="${REPO_VERSION}.$EXISTING_TAG_COUNT"
           fi
           
-          git tag -a "v$REPO_VERSION" -m "Release v$REPO_VERSION
+          # Check if repository tag already exists before creating
+          if git rev-parse "v$REPO_VERSION" >/dev/null 2>&1; then
+            echo "Tag v$REPO_VERSION already exists, skipping repository tag creation"
+          else
+            git tag -a "v$REPO_VERSION" -m "Release v$REPO_VERSION
 
           Version bump: $VERSION_TYPE
           Features updated:$UPDATED_FEATURES"
+          fi
           
           # Create feature-specific tags
           for feature_version in $UPDATED_FEATURES; do
             feature=$(echo $feature_version | cut -d: -f1)
             version=$(echo $feature_version | cut -d: -f2)
-            git tag -a "$feature-v$version" -m "Release $feature v$version"
+            
+            # Check if feature tag already exists before creating
+            if git rev-parse "$feature-v$version" >/dev/null 2>&1; then
+              echo "Tag $feature-v$version already exists, skipping feature tag creation"
+            else
+              git tag -a "$feature-v$version" -m "Release $feature v$version"
+            fi
           done
           
           # Create a unique branch name for the version bump
