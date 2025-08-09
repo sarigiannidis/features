@@ -1,5 +1,5 @@
 
-# jq JSON processor on Alpine (alpine-jq)
+# jq JSON Processor on Alpine (alpine-jq)
 
 Installs jq lightweight command-line JSON processor on Alpine Linux
 

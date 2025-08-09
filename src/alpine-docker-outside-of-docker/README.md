@@ -1,5 +1,5 @@
 
-# Docker (docker-outside-of-docker for Alpine) (alpine-docker-outside-of-docker)
+# Docker (outside-of-docker for Alpine) (alpine-docker-outside-of-docker)
 
 Re-use the host docker socket, adding the Docker CLI to an Alpine container. Feature invokes a script to enable using a forwarded Docker socket within a container to run Docker commands.
 

@@ -1,5 +1,5 @@
 
-# git on alpine (alpine-git)
+# Git on Alpine (alpine-git)
 
 Installs Git version control system on Alpine Linux
 

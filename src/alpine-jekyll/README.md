@@ -1,5 +1,5 @@
 
-# jekyll on alpine (alpine-jekyll)
+# Jekyll on Alpine (alpine-jekyll)
 
 Installs Jekyll static site generator on Alpine Linux
 
