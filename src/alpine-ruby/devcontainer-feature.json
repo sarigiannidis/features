@@ -1,5 +1,5 @@
 {
-  "name": "ruby on alpine",
+  "name": "Ruby on Alpine",
   "id": "alpine-ruby",
   "version": "1.0.2",
   "description": "Installs Ruby programming language and runtime on Alpine Linux",

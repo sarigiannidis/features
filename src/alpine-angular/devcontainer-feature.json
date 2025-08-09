@@ -1,5 +1,5 @@
 {
-  "name": "angular on alpine",
+  "name": "Angular CLI on Alpine",
   "id": "alpine-angular",
   "version": "1.0.2",
   "description": "Installs Angular CLI for building modern web applications on Alpine Linux",

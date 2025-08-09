@@ -1,5 +1,5 @@
 {
-  "name": "pip on alpine",
+  "name": "Python pip on Alpine",
   "id": "alpine-pip",
   "version": "1.0.2",
   "description": "Installs pip Python package installer on Alpine Linux",
