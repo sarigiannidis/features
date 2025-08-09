@@ -1,5 +1,5 @@
 
-# python on alpine (alpine-python)
+# Python on Alpine (alpine-python)
 
 Installs Python programming language and runtime on Alpine Linux
 
