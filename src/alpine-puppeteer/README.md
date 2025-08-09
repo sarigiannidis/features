@@ -1,5 +1,5 @@
 
-# puppeteer on alpine (alpine-puppeteer)
+# Puppeteer on Alpine (alpine-puppeteer)
 
 Installs Puppeteer Node.js library for controlling headless Chrome on Alpine Linux
 

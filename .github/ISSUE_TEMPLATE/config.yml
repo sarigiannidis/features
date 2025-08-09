@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: ❓ General Questions & Support
+    url: https://github.com/sarigiannidis/features/discussions
+    about: Ask questions about DevContainer features or get help using them
+  - name: 📚 DevContainer Features Documentation
+    url: https://containers.dev/features
+    about: Learn more about the DevContainer Features specification
+  - name: 🛠️ Development Guide
+    url: https://github.com/sarigiannidis/features/blob/main/DEVELOPMENT.md
+    about: Comprehensive guide for contributing and testing features

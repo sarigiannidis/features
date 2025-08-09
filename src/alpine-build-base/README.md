@@ -1,5 +1,5 @@
 
-# Build-base on Alpine (alpine-build-base)
+# Build Base on Alpine (alpine-build-base)
 
 Installs build-base package with essential build tools (gcc, g++, binutils, libc-dev, make) on Alpine Linux
 

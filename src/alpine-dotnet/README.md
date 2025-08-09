@@ -1,5 +1,5 @@
 
-# dotnet on alpine (alpine-dotnet)
+# .NET SDK on Alpine (alpine-dotnet)
 
 Installs .NET SDK and runtime on Alpine Linux (requires bash for Microsoft's official installer)
 
