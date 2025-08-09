@@ -34,7 +34,7 @@ Which DevContainer feature is experiencing the issue?
 
 ## To Reproduce
 Steps to reproduce the behavior:
-1. Add feature to `.devcontainer/devcontainer.json` with configuration: `{}`
+1. Add feature to `.devcontainer/devcontainer.json` with configuration: `{your configuration here}`
 2. Build DevContainer with: `devcontainer build`
 3. Run command: `...`
 4. See error: `...`
