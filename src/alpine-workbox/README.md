@@ -1,5 +1,5 @@
 
-# workbox on alpine (alpine-workbox)
+# Workbox on Alpine (alpine-workbox)
 
 Installs Workbox libraries for adding progressive web app features on Alpine Linux
 

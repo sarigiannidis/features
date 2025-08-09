@@ -1,5 +1,5 @@
 
-# ruby on alpine (alpine-ruby)
+# Ruby on Alpine (alpine-ruby)
 
 Installs Ruby programming language and runtime on Alpine Linux
 

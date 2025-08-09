@@ -1,5 +1,5 @@
 
-# next on alpine (alpine-next)
+# Next.js on Alpine (alpine-next)
 
 Installs Next.js React framework for production-ready web applications on Alpine Linux
 

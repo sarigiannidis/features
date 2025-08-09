@@ -1,5 +1,5 @@
 
-# gulp on alpine (alpine-gulp)
+# Gulp Task Runner on Alpine (alpine-gulp)
 
 Installs Gulp toolkit for automating development workflows on Alpine Linux
 
