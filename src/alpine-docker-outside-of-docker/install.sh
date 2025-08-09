@@ -1,4 +1,21 @@
 #!/bin/sh
+# ============================================================================
+# Alpine Docker Outside-of-Docker Feature Installation Script
+# ============================================================================
+# Re-use the host docker socket, adding the Docker CLI to an Alpine container.
+# Feature invokes a script to enable using a forwarded Docker socket within
+# a container to run Docker commands.
+#
+# This script is adapted from Microsoft's official docker-outside-of-docker 
+# feature for Alpine Linux compatibility.
+#
+# What this script does:
+# 1. Installs Docker CLI and related tools
+# 2. Configures Docker Compose (v1 or v2)
+# 3. Optionally installs Docker Buildx
+# 4. Sets up socket forwarding and permissions
+# 5. Configures non-root Docker access
+# ============================================================================
 #-------------------------------------------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See https://go.microsoft.com/fwlink/?linkid=2090316 for license information.
