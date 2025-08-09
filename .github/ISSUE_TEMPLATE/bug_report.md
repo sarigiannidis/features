@@ -1,38 +1,73 @@
 ---
-name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
+name: 🐛 Bug Report
+about: Report a bug with a DevContainer feature
+title: '[BUG] '
+labels: 'bug'
 assignees: ''
 
 ---
 
-**Describe the bug**
+## Bug Description
 A clear and concise description of what the bug is.
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+## Affected Feature
+Which DevContainer feature is experiencing the issue?
+- [ ] alpine-angular
+- [ ] alpine-bash
+- [ ] alpine-build-base
+- [ ] alpine-chromium
+- [ ] alpine-docker-outside-of-docker
+- [ ] alpine-dotnet
+- [ ] alpine-git
+- [ ] alpine-gulp
+- [ ] alpine-jekyll
+- [ ] alpine-jq
+- [ ] alpine-make
+- [ ] alpine-next
+- [ ] alpine-node
+- [ ] alpine-pip
+- [ ] alpine-puppeteer
+- [ ] alpine-python
+- [ ] alpine-ruby
+- [ ] alpine-workbox
+- [ ] Other (specify): 
 
-**Expected behavior**
+## To Reproduce
+Steps to reproduce the behavior:
+1. Add feature to `.devcontainer/devcontainer.json` with configuration: `{}`
+2. Build DevContainer with: `devcontainer build`
+3. Run command: `...`
+4. See error: `...`
+
+## Expected Behavior
 A clear and concise description of what you expected to happen.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+## DevContainer Configuration
+Please share your `.devcontainer/devcontainer.json` configuration:
+```json
+{
+  "features": {
+    "ghcr.io/sarigiannidis/features/alpine-[feature]:latest": {
+      // your configuration here
+    }
+  }
+}
+```
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+## Environment
+- **Base Image**: [e.g., alpine:latest, alpine:3.18]
+- **DevContainer CLI Version**: [run `devcontainer --version`]
+- **Docker Version**: [run `docker --version`]
+- **Host OS**: [e.g., Ubuntu 22.04, macOS 13, Windows 11]
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+## Error Output
+If applicable, paste the complete error output or logs:
+```
+[paste error output here]
+```
 
-**Additional context**
-Add any other context about the problem here.
+## Additional Context
+Add any other context about the problem here, such as:
+- Does this work with other base images?
+- Is this a regression from a previous version?
+- Any workarounds you've found?
