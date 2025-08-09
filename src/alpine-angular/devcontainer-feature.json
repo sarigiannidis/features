@@ -1,7 +1,7 @@
 {
   "name": "Angular CLI on Alpine",
   "id": "alpine-angular",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Installs Angular CLI for building modern web applications on Alpine Linux",
   "dependsOn": {
     "ghcr.io/sarigiannidis/features/alpine-node:latest": {}

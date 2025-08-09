@@ -1,6 +1,6 @@
 {
   "name": "Build Base on Alpine",
   "id": "alpine-build-base",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Installs build-base package with essential build tools (gcc, g++, binutils, libc-dev, make) on Alpine Linux"
 }
