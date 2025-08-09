@@ -1,5 +1,5 @@
 {
-  "name": "gulp on alpine",
+  "name": "Gulp Task Runner on Alpine",
   "id": "alpine-gulp",
   "version": "1.0.2",
   "description": "Installs Gulp toolkit for automating development workflows on Alpine Linux",

@@ -1,5 +1,5 @@
 {
-  "name": "jekyll on alpine",
+  "name": "Jekyll on Alpine",
   "id": "alpine-jekyll",
   "version": "1.0.2",
   "description": "Installs Jekyll static site generator on Alpine Linux",
