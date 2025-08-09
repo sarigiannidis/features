@@ -1,6 +1,6 @@
 {
   "name": "Chromium Browser on Alpine",
   "id": "alpine-chromium",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Installs Chromium web browser for testing and automation on Alpine Linux"
 }
